@@ -1,0 +1,6 @@
+name: WeaponGems
+version: '1.0'
+main: me.monkeee.weaponGems.WeaponGems
+api-version: '1.21'
+prefix: WG
+authors: [ _Monkeee ]

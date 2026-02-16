@@ -1,0 +1,22 @@
+{
+  "jade": {
+    "item": "emerald",
+    "name": "&aᴛʜᴇ ɢʀᴇᴀᴛ ᴊᴀᴅᴇ",
+    "lore": ["line 1", "line 2"],
+    "spawnrate": {
+      "amout": 1,
+      "chance": 0
+    },
+    "tag": "jade_gem"
+  },
+  "ruby": {
+    "item": "redstone",
+    "name": "&cᴛʜᴇ ᴘᴜʀᴇ ʀᴜʙʏ",
+    "lore": ["test 1", "test 2"],
+    "spawnrate": {
+      "amout": 1,
+      "chance": 0
+    },
+    "tag": "ruby_gem"
+  }
+}
