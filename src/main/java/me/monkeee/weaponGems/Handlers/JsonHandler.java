@@ -1,5 +1,6 @@
 package me.monkeee.weaponGems.Handlers;
 
+import me.monkeee.weaponGems.WeaponGems;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -9,10 +10,11 @@ import java.nio.file.Paths;
 
 public class JsonHandler {
 
+
     public static String String_reader(String gem, String path) {
-        File file = new File("resources/items.json");
+        File file = new File(WeaponGems.getInstance().getDataFolder(), "items.json");
         try {
-           String content = new String(Files.readAllBytes(Paths.get(file.toURI())));
+            String content = Files.readString(file.toPath());
             JSONObject jsonContent = new JSONObject(content);
             JSONObject gemObject = jsonContent.getJSONObject(gem);
             return gemObject.getString(path);
@@ -22,9 +24,9 @@ public class JsonHandler {
     }
 
     public static JSONArray ListReader(String gem) {
-        File file = new File("resources/items.json");
+        File file = new File(WeaponGems.getInstance().getDataFolder(), "items.json");
         try {
-            String content = new String(Files.readAllBytes(Paths.get(file.toURI())));
+            String content = Files.readString(file.toPath());
             JSONObject jsonObject = new JSONObject(content);
             JSONObject gemObject = jsonObject.getJSONObject(gem);
             return gemObject.getJSONArray("lore");
@@ -34,9 +36,9 @@ public class JsonHandler {
     }
 
     public static int SpawnChanceReader(String gem, String path) {
-        File file = new File("resources/items.json");
+        File file = new File(WeaponGems.getInstance().getDataFolder(), "items.json");
         try {
-            String content = new String(Files.readAllBytes(Paths.get(file.toURI())));
+            String content = Files.readString(file.toPath());
             JSONObject jsonObject = new JSONObject(content);
             JSONObject gemObject = jsonObject.getJSONObject(gem);
             JSONObject spawnObject = gemObject.getJSONObject("spawnrate");

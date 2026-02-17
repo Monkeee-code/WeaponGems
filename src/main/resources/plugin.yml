@@ -4,3 +4,6 @@ main: me.monkeee.weaponGems.WeaponGems
 api-version: '1.21'
 prefix: WG
 authors: [ _Monkeee ]
+commands:
+  givegem:
+    description: Gives the wanted gem to the player

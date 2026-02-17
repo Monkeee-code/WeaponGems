@@ -9,6 +9,7 @@ import java.util.Objects;
 public final class WeaponGems extends JavaPlugin {
 
     private static WeaponGems instance;
+
     @Override
     public void onEnable() {
         instance = this;
@@ -18,10 +19,14 @@ public final class WeaponGems extends JavaPlugin {
             getPluginLoader().disablePlugin(this);
             return;
         }
+        saveResource("items.json", false);
 
         Objects.requireNonNull(getCommand("givegem")).setExecutor(new GiveGemstone());
+        Objects.requireNonNull(getCommand("givegem")).setTabCompleter(new GiveGemstone());
     }
 
-    public static WeaponGems getInstance() { return instance; }
-    
+    public static WeaponGems getInstance() {
+        return instance;
+    }
+
 }

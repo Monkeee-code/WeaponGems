@@ -19,8 +19,8 @@ public class ItemHandler {
         gem_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(gem_type, "name")));
 
         List<String> Lore = new ArrayList<>();
-        for (int i=0;i<JsonHandler.ListReader(gem_type).length();i++){
-            Lore.add(JsonHandler.ListReader(gem_type).getString(i));
+        for (int i = 0; i< JsonHandler.ListReader(gem_type).length(); i++){
+            Lore.add(ChatColor.translateAlternateColorCodes('&', JsonHandler.ListReader(gem_type).getString(i)));
         }
         gem_meta.setLore(Lore);
         gem.setItemMeta(gem_meta);

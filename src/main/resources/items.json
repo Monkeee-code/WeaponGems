@@ -4,19 +4,39 @@
     "name": "&aᴛʜᴇ ɢʀᴇᴀᴛ ᴊᴀᴅᴇ",
     "lore": ["line 1", "line 2"],
     "spawnrate": {
-      "amout": 1,
+      "amount": 1,
       "chance": 0
     },
     "tag": "jade_gem"
   },
   "ruby": {
-    "item": "redstone",
+    "item": "red_dye",
     "name": "&cᴛʜᴇ ᴘᴜʀᴇ ʀᴜʙʏ",
     "lore": ["test 1", "test 2"],
     "spawnrate": {
-      "amout": 1,
+      "amount": 1,
       "chance": 0
     },
     "tag": "ruby_gem"
+  },
+  "darkstone": {
+    "item": "black_dye",
+    "name": "&8ɪᴍʙᴜᴇᴅ ѕᴛᴏɴᴇ ᴏꜰ ᴅᴀʀᴋɴᴇѕѕ",
+    "lore": ["empty 1", "empty 2"],
+    "spawnrate": {
+      "amount": 1,
+      "chance": 0
+    },
+    "tag": "darkstone"
+  },
+  "divan_core": {
+    "item": "orange_dye",
+    "name": "&6ᴅɪᴠᴀɴ᾽ѕ ᴄᴏʀᴇ",
+    "lore": ["1", "2"],
+    "spawnrate": {
+      "amount": 1,
+      "chance": 0
+    },
+    "tag": "divan_core"
   }
 }
