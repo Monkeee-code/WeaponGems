@@ -34,7 +34,7 @@ public class GiveGemstone implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         if (!command.getLabel().equals("givegem")) return List.of();
         if (args.length > 0) {
-            return getGemList();
+            return GetBetterList(getGemList(), args, 1);
         } else return List.of();
     }
 
