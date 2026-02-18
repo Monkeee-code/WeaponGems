@@ -1,0 +1,2 @@
+# If you want to replace items.json on plugin startup
+replace-json: true

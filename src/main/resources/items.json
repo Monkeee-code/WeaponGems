@@ -27,7 +27,7 @@
       "amount": 1,
       "chance": 0
     },
-    "tag": "darkstone"
+    "tag": "darkstone_gem"
   },
   "divan_core": {
     "item": "orange_dye",
@@ -38,5 +38,25 @@
       "chance": 0
     },
     "tag": "divan_core"
+  },
+  "deflection_eye": {
+    "item": "purple_dye",
+    "name": "&5ᴇʏᴇ ᴏꜰ ᴅᴇꜰʟᴇᴄᴛɪᴏɴ",
+    "lore": ["", ""],
+    "spawnrate": {
+      "amount": 1,
+      "chance": 0
+    },
+    "tag": "deflection_eye"
+  },
+  "spider_soul": {
+    "item": "green_dye",
+    "name": "&2ᴀʀᴀᴄʜɴɪᴅ᾽ѕ ꜰᴀɴɢ",
+    "lore": ["", ""],
+    "spawnrate": {
+      "amount": 1,
+      "chance": 0
+    },
+    "tag": "spider_soul"
   }
 }

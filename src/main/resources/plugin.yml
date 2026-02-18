@@ -7,3 +7,5 @@ authors: [ _Monkeee ]
 commands:
   givegem:
     description: Gives the wanted gem to the player
+  wgreload:
+    description: Reloads the plugin's config

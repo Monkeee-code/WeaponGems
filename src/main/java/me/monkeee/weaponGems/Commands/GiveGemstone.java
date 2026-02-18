@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GiveGemstone implements CommandExecutor, TabCompleter {
@@ -24,7 +25,7 @@ public class GiveGemstone implements CommandExecutor, TabCompleter {
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         if (!(sender instanceof Player)) return false;
         if (!sender.isOp()) { sender.sendMessage(ChatColor.RED + "Only Operators can execute this command!"); return false; }
-        ((Player) sender).getInventory().addItem(ItemHandler.createGem(args[0]));
+        ((Player) sender).getInventory().addItem(ItemHandler.createGem(args[0].toLowerCase()));
         sender.sendMessage(ChatColor.GREEN+"You have been given a gem: "+ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(args[0], "name")));
         return true;
     }
@@ -46,5 +47,20 @@ public class GiveGemstone implements CommandExecutor, TabCompleter {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static List<String> GetBetterList(List<String> list, String[] args, int argStage) {
+        List<String> completions = null;
+        String input = args[argStage];
+        for (String s : list) {
+            if (s.toLowerCase().startsWith(input) || s.toUpperCase().startsWith(input)) {
+                if (completions == null) {
+                    completions = new ArrayList<>();
+                }
+                completions.add(s);
+            }
+        }
+        if (completions != null) Collections.sort(completions);
+        return completions;
     }
 }
