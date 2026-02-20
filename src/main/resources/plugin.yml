@@ -9,3 +9,5 @@ commands:
     description: Gives the wanted gem to the player
   wgreload:
     description: Reloads the plugin's config
+  wgapply:
+    description: Applies the item and gem together

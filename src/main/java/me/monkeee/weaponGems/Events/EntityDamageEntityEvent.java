@@ -3,7 +3,7 @@ package me.monkeee.weaponGems.Events;
 import me.monkeee.weaponGems.Abilities.DarkstoneAbility;
 import me.monkeee.weaponGems.Abilities.DeflectionEyeAbility;
 import me.monkeee.weaponGems.Abilities.RubyAbility;
-import me.monkeee.weaponGems.Abilities.SpiderSoulAbility;
+import me.monkeee.weaponGems.Abilities.SpiderFangAbility;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -22,7 +22,7 @@ public class EntityDamageEntityEvent implements Listener {
         if (entity1 instanceof Player dealer) {
             DarkstoneAbility.AbilityBlindness(dealer, player);
             RubyAbility.AbilityLifeSteal(dealer, event);
-            SpiderSoulAbility.AbilityPoison(dealer, player);
+            SpiderFangAbility.AbilityPoison(dealer, player);
         }
         if (entity1 instanceof Arrow arrow) {
             DeflectionEyeAbility.AbilityDeflectArrows(player, arrow, event);

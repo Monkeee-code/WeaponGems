@@ -7,7 +7,7 @@
       "amount": 1,
       "chance": 0
     },
-    "tag": "jade_gem"
+    "tag": "jade"
   },
   "ruby": {
     "item": "red_dye",
@@ -17,7 +17,7 @@
       "amount": 1,
       "chance": 0
     },
-    "tag": "ruby_gem"
+    "tag": "ruby"
   },
   "darkstone": {
     "item": "black_dye",
@@ -27,7 +27,7 @@
       "amount": 1,
       "chance": 0
     },
-    "tag": "darkstone_gem"
+    "tag": "darkstone"
   },
   "divan_core": {
     "item": "orange_dye",
@@ -49,7 +49,7 @@
     },
     "tag": "deflection_eye"
   },
-  "spider_soul": {
+  "spider_fang": {
     "item": "green_dye",
     "name": "&2ᴀʀᴀᴄʜɴɪᴅ᾽ѕ ꜰᴀɴɢ",
     "lore": ["", ""],
@@ -57,6 +57,6 @@
       "amount": 1,
       "chance": 0
     },
-    "tag": "spider_soul"
+    "tag": "spider_fang"
   }
 }

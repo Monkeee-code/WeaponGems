@@ -22,25 +22,25 @@ public class JadeAbility {
 
         if (helmetSlot != null && helmetSlot.getType() != Material.AIR) {
             helmetHasJadeGem = NBT.get(helmetSlot, nbt -> {
-                return nbt.getBoolean("jade_gem");
+                return nbt.getBoolean("jade");
             });
         }
 
         if (chestplateSlot != null && chestplateSlot.getType() != Material.AIR) {
             chestplateHasJadeGem = NBT.get(chestplateSlot, nbt -> {
-                return nbt.getBoolean("jade_gem");
+                return nbt.getBoolean("jade");
             });
         }
 
         if (leggingsSlot != null && leggingsSlot.getType() != Material.AIR) {
             leggingsHasJadeGem = NBT.get(leggingsSlot, nbt -> {
-                return nbt.getBoolean("jade_gem");
+                return nbt.getBoolean("jade");
             });
         }
 
         if (bootsSlot != null && bootsSlot.getType() != Material.AIR) {
             bootsHasJadeGem = NBT.get(bootsSlot, nbt -> {
-                return nbt.getBoolean("jade_gem");
+                return nbt.getBoolean("jade");
             });
         }
 

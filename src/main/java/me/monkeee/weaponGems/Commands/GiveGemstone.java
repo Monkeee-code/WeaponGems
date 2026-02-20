@@ -25,6 +25,7 @@ public class GiveGemstone implements CommandExecutor, TabCompleter {
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         if (!(sender instanceof Player)) return false;
         if (!sender.isOp()) { sender.sendMessage(ChatColor.RED + "Only Operators can execute this command!"); return false; }
+        if (args[0].isEmpty()) { sender.sendMessage(ChatColor.RED + "Please, mention a gem to use!"); return false; }
         ((Player) sender).getInventory().addItem(ItemHandler.createGem(args[0].toLowerCase()));
         sender.sendMessage(ChatColor.GREEN+"You have been given a gem: "+ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(args[0], "name")));
         return true;
@@ -34,7 +35,7 @@ public class GiveGemstone implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         if (!command.getLabel().equals("givegem")) return List.of();
         if (args.length > 0) {
-            return GetBetterList(getGemList(), args, 1);
+            return GetBetterList(getGemList(), args, 0);
         } else return List.of();
     }
 

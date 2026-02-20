@@ -22,6 +22,9 @@ public class ItemHandler {
         for (int i = 0; i< JsonHandler.ListReader(gem_type).length(); i++){
             Lore.add(ChatColor.translateAlternateColorCodes('&', JsonHandler.ListReader(gem_type).getString(i)));
         }
+        Lore.add("");
+        Lore.add(ChatColor.DARK_GRAY+"Applicable Items:");
+        applyApplicableItemsLore(gem_type, Lore);
         gem_meta.setLore(Lore);
         gem.setItemMeta(gem_meta);
 
@@ -30,5 +33,21 @@ public class ItemHandler {
             nbt.setString("gemType", JsonHandler.String_reader(gem_type, "tag"));
         });
         return gem;
+    }
+
+    private static void applyApplicableItemsLore(String gemType, List<String> lore) {
+        if (gemType.equalsIgnoreCase("darkstone")) {
+            lore.addAll(GemItemHandler.DarkstoneItems);
+        } else if (gemType.equalsIgnoreCase("deflection_exe")) {
+            lore.addAll(GemItemHandler.DeflectionEyeItems);
+        } else if (gemType.equalsIgnoreCase("divan_core")) {
+            lore.addAll(GemItemHandler.DivanCoreItems);
+        } else if (gemType.equalsIgnoreCase("jade")) {
+            lore.addAll(GemItemHandler.JadeItems);
+        } else if (gemType.equalsIgnoreCase("ruby")) {
+            lore.addAll(GemItemHandler.RubyItems);
+        } else if (gemType.equalsIgnoreCase("spider_fang")) {
+            lore.addAll(GemItemHandler.SpiderFangItems);
+        }
     }
 }
