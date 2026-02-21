@@ -26,6 +26,8 @@ public class ItemHandler {
         Lore.add(ChatColor.DARK_GRAY+"Applicable Items:");
         applyApplicableItemsLore(gem_type, Lore);
         gem_meta.setLore(Lore);
+        gem_meta.setMaxStackSize(1);
+        gem_meta.setFireResistant(true);
         gem.setItemMeta(gem_meta);
 
         NBT.modify(gem, nbt -> {
@@ -37,17 +39,29 @@ public class ItemHandler {
 
     private static void applyApplicableItemsLore(String gemType, List<String> lore) {
         if (gemType.equalsIgnoreCase("darkstone")) {
-            lore.addAll(GemItemHandler.DarkstoneItems);
-        } else if (gemType.equalsIgnoreCase("deflection_exe")) {
-            lore.addAll(GemItemHandler.DeflectionEyeItems);
+            for (String line : GemItemHandler.DarkstoneItems) {
+                lore.add(ChatColor.GRAY+line);
+            }
+        } else if (gemType.equalsIgnoreCase("deflection_eye")) {
+            for (String line : GemItemHandler.DeflectionEyeItems) {
+                lore.add(ChatColor.GRAY+line);
+            }
         } else if (gemType.equalsIgnoreCase("divan_core")) {
-            lore.addAll(GemItemHandler.DivanCoreItems);
+            for (String line : GemItemHandler.DivanCoreItems) {
+                lore.add(ChatColor.GRAY+line);
+            }
         } else if (gemType.equalsIgnoreCase("jade")) {
-            lore.addAll(GemItemHandler.JadeItems);
+            for (String line : GemItemHandler.JadeItems) {
+                lore.add(ChatColor.GRAY+line);
+            }
         } else if (gemType.equalsIgnoreCase("ruby")) {
-            lore.addAll(GemItemHandler.RubyItems);
+            for (String line : GemItemHandler.RubyItems) {
+                lore.add(ChatColor.GRAY+line);
+            }
         } else if (gemType.equalsIgnoreCase("spider_fang")) {
-            lore.addAll(GemItemHandler.SpiderFangItems);
+            for (String line : GemItemHandler.SpiderFangItems) {
+                lore.add(ChatColor.GRAY+line);
+            }
         }
     }
 }

@@ -19,6 +19,6 @@ public class RubyAbility {
         double dealerHP = dealer.getHealth();
         double damage = event.getFinalDamage();
         double maxHealth = Objects.requireNonNull(dealer.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue();
-        dealer.setHealth(Math.min(dealerHP+(damage*0.3), maxHealth));
+        dealer.setHealth(Math.min(dealerHP+(damage*0.2), maxHealth));
     }
 }

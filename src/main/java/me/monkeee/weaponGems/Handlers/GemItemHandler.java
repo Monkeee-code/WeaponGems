@@ -18,20 +18,14 @@ public class GemItemHandler {
         DarkstoneItems.add("mace");
 
         DeflectionEyeItems.add("helmet");
-        DeflectionEyeItems.add("chestplate");
-        DeflectionEyeItems.add("leggings");
-        DeflectionEyeItems.add("boots");
 
         DivanCoreItems.add("pickaxe");
         DivanCoreItems.add("shovel");
         DivanCoreItems.add("axe");
         DivanCoreItems.add("hoe");
-        DivanCoreItems.add("sheers");
+        DivanCoreItems.add("shears");
 
-        JadeItems.add("helmet");
         JadeItems.add("chestplate");
-        JadeItems.add("leggings");
-        JadeItems.add("boots");
 
         RubyItems.add("sword");
         RubyItems.add("axe");

@@ -6,6 +6,7 @@ import me.monkeee.weaponGems.Commands.ApplyCommand;
 import me.monkeee.weaponGems.Commands.GiveGemstone;
 import me.monkeee.weaponGems.Commands.WGReload;
 import me.monkeee.weaponGems.Events.EntityDamageEntityEvent;
+import me.monkeee.weaponGems.Events.LootTableGeneration;
 import me.monkeee.weaponGems.Handlers.GemItemHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -31,11 +32,13 @@ public final class WeaponGems extends JavaPlugin {
 
         TickingAbility.startTicking();
         GemItemHandler.ApplyItemsToList();
+        Objects.requireNonNull(getCommand("wgapply")).setTabCompleter(new ApplyCommand());
         Objects.requireNonNull(getCommand("wgapply")).setExecutor(new ApplyCommand());
         Objects.requireNonNull(getCommand("wgreload")).setExecutor(new WGReload());
         Objects.requireNonNull(getCommand("givegem")).setExecutor(new GiveGemstone());
         Objects.requireNonNull(getCommand("givegem")).setTabCompleter(new GiveGemstone());
         getServer().getPluginManager().registerEvents(new EntityDamageEntityEvent(), this);
+        getServer().getPluginManager().registerEvents(new LootTableGeneration(), this);
     }
 
     public static WeaponGems getInstance() {

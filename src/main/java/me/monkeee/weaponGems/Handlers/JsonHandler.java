@@ -34,14 +34,14 @@ public class JsonHandler {
         }
     }
 
-    public static int SpawnChanceReader(String gem, String path) {
+    public static double SpawnChanceReader(String gem, String path) {
         File file = new File(WeaponGems.getInstance().getDataFolder(), "items.json");
         try {
             String content = Files.readString(file.toPath());
             JSONObject jsonObject = new JSONObject(content);
             JSONObject gemObject = jsonObject.getJSONObject(gem);
             JSONObject spawnObject = gemObject.getJSONObject("spawnrate");
-            return spawnObject.getInt(path);
+            return spawnObject.getDouble(path);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -15,11 +16,10 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ApplyCommand implements CommandExecutor {
+public class ApplyCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         if (!(sender instanceof Player player)) return false;
@@ -52,6 +52,7 @@ public class ApplyCommand implements CommandExecutor {
     private static void ApplyGem(ItemStack mainHand, ItemStack offHand, Player player) {
         String GemType = getGemType(offHand);
         ItemMeta mainHandMeta = mainHand.getItemMeta();
+        if (mainHandMeta == null) return;
         List<String> lore = mainHandMeta.getLore() != null ? new ArrayList<>(mainHandMeta.getLore()) : new ArrayList<>();
         if (isAlreadyApplied(mainHand, GemType)) {
             player.sendMessage(ChatColor.RED+"The item already has this type of gem!");
@@ -181,5 +182,17 @@ public class ApplyCommand implements CommandExecutor {
         boolean hasSpiderFang = NBT.get(item, nbt -> (boolean) nbt.getBoolean(gem));
 
         return hasDarkstone && hasDeflectionEye && hasDivanCore && hasJade && hasRuby && hasSpiderFang;
+    }
+
+    @Override
+    public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String[] args) {
+        List<String> output = new ArrayList<>();
+        output.add("confirm");
+
+        if (args.length > 0) {
+            return GiveGemstone.GetBetterList(output, args, 0);
+        }
+
+        return List.of();
     }
 }
