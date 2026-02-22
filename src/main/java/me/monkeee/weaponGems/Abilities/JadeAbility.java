@@ -10,21 +10,9 @@ import org.bukkit.potion.PotionEffectType;
 public class JadeAbility {
 
     public static void AbilityResistance(Player player) {
-        ItemStack helmetSlot = player.getInventory().getHelmet();
         ItemStack chestplateSlot = player.getInventory().getChestplate();
-        ItemStack leggingsSlot = player.getInventory().getLeggings();
-        ItemStack bootsSlot = player.getInventory().getBoots();
 
-        boolean helmetHasJadeGem = false;
         boolean chestplateHasJadeGem = false;
-        boolean leggingsHasJadeGem = false;
-        boolean bootsHasJadeGem = false;
-
-        if (helmetSlot != null && helmetSlot.getType() != Material.AIR) {
-            helmetHasJadeGem = NBT.get(helmetSlot, nbt -> {
-                return nbt.getBoolean("jade");
-            });
-        }
 
         if (chestplateSlot != null && chestplateSlot.getType() != Material.AIR) {
             chestplateHasJadeGem = NBT.get(chestplateSlot, nbt -> {
@@ -32,19 +20,7 @@ public class JadeAbility {
             });
         }
 
-        if (leggingsSlot != null && leggingsSlot.getType() != Material.AIR) {
-            leggingsHasJadeGem = NBT.get(leggingsSlot, nbt -> {
-                return nbt.getBoolean("jade");
-            });
-        }
-
-        if (bootsSlot != null && bootsSlot.getType() != Material.AIR) {
-            bootsHasJadeGem = NBT.get(bootsSlot, nbt -> {
-                return nbt.getBoolean("jade");
-            });
-        }
-
-        if (!(helmetHasJadeGem || chestplateHasJadeGem ||leggingsHasJadeGem || bootsHasJadeGem)) return;
-        player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 100, 1, true, false, false));
+        if (!chestplateHasJadeGem) return;
+        player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 100, 0, true, false, false));
     }
 }

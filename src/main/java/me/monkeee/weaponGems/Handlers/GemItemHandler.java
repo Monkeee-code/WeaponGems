@@ -1,7 +1,9 @@
 package me.monkeee.weaponGems.Handlers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GemItemHandler {
 
@@ -11,6 +13,8 @@ public class GemItemHandler {
     public static List<String> JadeItems = new ArrayList<>();
     public static List<String> RubyItems = new ArrayList<>();
     public static List<String> SpiderFangItems = new ArrayList<>();
+
+    public static Map<String, List<String>> MapOfItems = new HashMap<>();
 
     public static void ApplyItemsToList() {
         DarkstoneItems.add("sword");
@@ -33,5 +37,14 @@ public class GemItemHandler {
         SpiderFangItems.add("sword");
         SpiderFangItems.add("axe");
         SpiderFangItems.add("mace");
+
+        MapOfItems = Map.of(
+                "darkstone", DarkstoneItems,
+                "deflection_exe", DeflectionEyeItems,
+                "divan_core", DivanCoreItems,
+                "jade", JadeItems,
+                "ruby", RubyItems,
+                "spider_fang", SpiderFangItems
+        );
     }
 }

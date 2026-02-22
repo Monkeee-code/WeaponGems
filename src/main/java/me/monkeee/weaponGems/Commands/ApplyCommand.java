@@ -3,6 +3,7 @@ package me.monkeee.weaponGems.Commands;
 import de.tr7zw.changeme.nbtapi.NBT;
 import me.monkeee.weaponGems.Handlers.GemItemHandler;
 import me.monkeee.weaponGems.Handlers.JsonHandler;
+import me.monkeee.weaponGems.Handlers.ListHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -58,91 +59,17 @@ public class ApplyCommand implements CommandExecutor, TabCompleter {
             player.sendMessage(ChatColor.RED+"The item already has this type of gem!");
             return;
         }
-
-
-        if (GemType.equalsIgnoreCase("deflection_eye")) {
-            if (isCorrectItem(mainHand, GemType)) {
-                NBT.modify(mainHand, nbt -> {
-                    lore.add(ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(GemType, "name")));
-                    mainHandMeta.setLore(lore);
-                    mainHand.setItemMeta(mainHandMeta);
-                    nbt.setBoolean("deflection_eye", true);
-                });
-                player.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
-            } else {
-                player.sendMessage(ChatColor.RED+"The item is not valid for this gem!");
-                return;
-            }
-        }
-        if (GemType.equalsIgnoreCase("jade")) {
-            if (isCorrectItem(mainHand, GemType)) {
-                NBT.modify(mainHand, nbt -> {
-                    lore.add(ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(GemType, "name")));
-                    mainHandMeta.setLore(lore);
-                    mainHand.setItemMeta(mainHandMeta);
-                    nbt.setBoolean("jade", true);
-                });
-                player.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
-            }else {
-                player.sendMessage(ChatColor.RED+"The item is not valid for this gem!");
-                return;
-            }
-        }
-        if (GemType.equalsIgnoreCase("divan_core")) {
-            if (isCorrectItem(mainHand, GemType)) {
-                NBT.modify(mainHand, nbt -> {
-                    lore.add(ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(GemType, "name")));
-                    mainHandMeta.setLore(lore);
-                    mainHand.setItemMeta(mainHandMeta);
-                    nbt.setBoolean("divan_core", true);
-                });
-                player.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
-            }else {
-                player.sendMessage(ChatColor.RED+"The item is not valid for this gem!");
-                return;
-            }
-        }
-        if (GemType.equalsIgnoreCase("darkstone")) {
-            if (isCorrectItem(mainHand, GemType)) {
-                NBT.modify(mainHand, nbt -> {
-                    lore.add(ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(GemType, "name")));
-                    mainHandMeta.setLore(lore);
-                    mainHand.setItemMeta(mainHandMeta);
-                    nbt.setBoolean("darkstone", true);
-                });
-                player.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
-            }else {
-                player.sendMessage(ChatColor.RED+"The item is not valid for this gem!");
-                return;
-            }
-        }
-        if (GemType.equalsIgnoreCase("ruby")) {
-            if (isCorrectItem(mainHand, GemType)) {
-                NBT.modify(mainHand, nbt -> {
-                    lore.add(ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(GemType, "name")));
-                    mainHandMeta.setLore(lore);
-                    mainHand.setItemMeta(mainHandMeta);
-                    nbt.setBoolean("ruby", true);
-                });
-                player.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
-            }else {
-                player.sendMessage(ChatColor.RED+"The item is not valid for this gem!");
-                return;
-            }
-        }
-        if (GemType.equalsIgnoreCase("spider_fang")) {
-            if (isCorrectItem(mainHand, GemType)) {
-                NBT.modify(mainHand, nbt -> {
-                    lore.add(ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(GemType, "name")));
-                    mainHandMeta.setLore(lore);
-                    mainHand.setItemMeta(mainHandMeta);
-                    nbt.setBoolean("spider_fang", true);
-                });
-                player.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
-            }else {
-                player.sendMessage(ChatColor.RED+"The item is not valid for this gem!");
-                return;
-            }
+        if (isCorrectItem(mainHand, GemType)) {
+            NBT.modify(mainHand, nbt -> {
+                lore.add(ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(GemType, "name")));
+                mainHandMeta.setLore(lore);
+                mainHand.setItemMeta(mainHandMeta);
+                nbt.setBoolean(GemType, true);
+            });
+            player.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
+        }else {
+            player.sendMessage(ChatColor.RED+"The item is not valid for this gem!");
+            return;
         }
 
         player.sendMessage(ChatColor.YELLOW+GemType+ChatColor.GREEN+" has been applied to: "+ ChatColor.RESET+ mainHand.getType());
@@ -157,20 +84,7 @@ public class ApplyCommand implements CommandExecutor, TabCompleter {
     private static boolean isCorrectItem(ItemStack item, String gem) {
         Pattern PREFIX = Pattern.compile("^[a-z]+_");
         Matcher matcher = PREFIX.matcher(item.getType().toString().toLowerCase());
-        if (gem.equalsIgnoreCase("deflection_eye")) {
-            return GemItemHandler.DeflectionEyeItems.contains(matcher.replaceFirst(""));
-        } else if (gem.equalsIgnoreCase("jade")) {
-            return GemItemHandler.JadeItems.contains(matcher.replaceFirst(""));
-        } else if (gem.equalsIgnoreCase("divan_core")) {
-            return GemItemHandler.DivanCoreItems.contains(matcher.replaceFirst(""));
-        } else if (gem.equalsIgnoreCase("darkstone")) {
-            return GemItemHandler.DarkstoneItems.contains(matcher.replaceFirst(""));
-        } else if (gem.equalsIgnoreCase("ruby")) {
-            return GemItemHandler.RubyItems.contains(matcher.replaceFirst(""));
-        } else if (gem.equalsIgnoreCase("spider_fang")) {
-            return GemItemHandler.SpiderFangItems.contains(matcher.replaceFirst(""));
-        }
-        return false;
+        return GemItemHandler.MapOfItems.get(gem).contains(matcher.replaceFirst(""));
     }
 
     private static boolean isAlreadyApplied(ItemStack item, String gem) {
@@ -190,7 +104,7 @@ public class ApplyCommand implements CommandExecutor, TabCompleter {
         output.add("confirm");
 
         if (args.length > 0) {
-            return GiveGemstone.GetBetterList(output, args, 0);
+            return ListHandler.GetBetterList(output, args, 0);
         }
 
         return List.of();

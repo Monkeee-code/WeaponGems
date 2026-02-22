@@ -2,6 +2,7 @@ package me.monkeee.weaponGems.Commands;
 
 import me.monkeee.weaponGems.Handlers.ItemHandler;
 import me.monkeee.weaponGems.Handlers.JsonHandler;
+import me.monkeee.weaponGems.Handlers.ListHandler;
 import me.monkeee.weaponGems.WeaponGems;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -35,33 +36,9 @@ public class GiveGemstone implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         if (!command.getLabel().equals("givegem")) return List.of();
         if (args.length > 0) {
-            return GetBetterList(getGemList(), args, 0);
+            return ListHandler.GetBetterList(ListHandler.getGemList(), args, 0);
         } else return List.of();
     }
 
-    private static List<String> getGemList() {
-        File file = new File(WeaponGems.getInstance().getDataFolder(), "items.json");
-        try {
-            String content = Files.readString(file.toPath());
-            JSONObject json = new JSONObject(content);
-            return new ArrayList<>(json.keySet());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
-    public static List<String> GetBetterList(List<String> list, String[] args, int argStage) {
-        List<String> completions = null;
-        String input = args[argStage];
-        for (String s : list) {
-            if (s.toLowerCase().startsWith(input) || s.toUpperCase().startsWith(input)) {
-                if (completions == null) {
-                    completions = new ArrayList<>();
-                }
-                completions.add(s);
-            }
-        }
-        if (completions != null) Collections.sort(completions);
-        return completions;
-    }
 }

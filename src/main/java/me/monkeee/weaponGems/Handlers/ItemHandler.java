@@ -38,30 +38,8 @@ public class ItemHandler {
     }
 
     private static void applyApplicableItemsLore(String gemType, List<String> lore) {
-        if (gemType.equalsIgnoreCase("darkstone")) {
-            for (String line : GemItemHandler.DarkstoneItems) {
-                lore.add(ChatColor.GRAY+line);
-            }
-        } else if (gemType.equalsIgnoreCase("deflection_eye")) {
-            for (String line : GemItemHandler.DeflectionEyeItems) {
-                lore.add(ChatColor.GRAY+line);
-            }
-        } else if (gemType.equalsIgnoreCase("divan_core")) {
-            for (String line : GemItemHandler.DivanCoreItems) {
-                lore.add(ChatColor.GRAY+line);
-            }
-        } else if (gemType.equalsIgnoreCase("jade")) {
-            for (String line : GemItemHandler.JadeItems) {
-                lore.add(ChatColor.GRAY+line);
-            }
-        } else if (gemType.equalsIgnoreCase("ruby")) {
-            for (String line : GemItemHandler.RubyItems) {
-                lore.add(ChatColor.GRAY+line);
-            }
-        } else if (gemType.equalsIgnoreCase("spider_fang")) {
-            for (String line : GemItemHandler.SpiderFangItems) {
-                lore.add(ChatColor.GRAY+line);
-            }
+        for (String line : GemItemHandler.MapOfItems.get(gemType)) {
+            lore.add(ChatColor.GRAY+line);
         }
     }
 }
