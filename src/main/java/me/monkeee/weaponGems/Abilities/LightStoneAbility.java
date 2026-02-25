@@ -1,6 +1,7 @@
 package me.monkeee.weaponGems.Abilities;
 
 import de.tr7zw.changeme.nbtapi.NBT;
+import me.monkeee.weaponGems.GemTypes;
 import me.monkeee.weaponGems.Handlers.TimerHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -22,7 +23,7 @@ public class LightStoneAbility {
 
         if (chestplateSlot != null && chestplateSlot.getType() != Material.AIR) {
             chestplateHasJadeGem = NBT.get(chestplateSlot, nbt -> {
-                return nbt.getBoolean("lightstone");
+                return nbt.getBoolean(GemTypes.lightstone.toString());
             });
         }
 
@@ -33,9 +34,9 @@ public class LightStoneAbility {
 
         if ((maxHealth*0.25) < health) return;
 
-        if (TimerHandler.isOnCooldown(player, "lightstone", 20000)) return;
+        if (TimerHandler.isOnCooldown(player, GemTypes.lightstone, 20000)) return;
 
-        TimerHandler.setCooldown(player, "lightstone");
+        TimerHandler.setCooldown(player, GemTypes.lightstone);
 
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 120, 1, true, false));
         player.sendMessage(ChatColor.RED+"Your "+ChatColor.YELLOW+"Lightstone"+ChatColor.RED+" ability has been "+ChatColor.GREEN+"activated!");

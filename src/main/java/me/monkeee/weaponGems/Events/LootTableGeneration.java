@@ -1,5 +1,6 @@
 package me.monkeee.weaponGems.Events;
 
+import me.monkeee.weaponGems.GemTypes;
 import me.monkeee.weaponGems.Handlers.ItemHandler;
 import me.monkeee.weaponGems.Handlers.JsonHandler;
 import org.bukkit.NamespacedKey;
@@ -25,34 +26,34 @@ public class LootTableGeneration implements Listener {
         NamespacedKey key = table.getKey();
 
         if (key.equals(NamespacedKey.minecraft("chests/village/village_toolsmith"))) {
-            tryAddGem(event, "divan_core");
+            tryAddGem(event, GemTypes.divan_core);
         }
         if (key.equals(NamespacedKey.minecraft("chests/end_city_treasure"))) {
-            tryAddGem(event, "deflection_eye");
+            tryAddGem(event, GemTypes.deflection_eye);
         }
         if (key.equals(NamespacedKey.minecraft("chests/village/village_weaponsmith"))) {
-            tryAddGem(event, "darkstone");
+            tryAddGem(event, GemTypes.darkstone);
         }
         if (key.equals(NamespacedKey.minecraft("chests/village/village_armorer"))) {
-            tryAddGem(event, "jade");
+            tryAddGem(event, GemTypes.jade);
         }
         if (key.equals(NamespacedKey.minecraft("chests/simple_dungeon"))) {
-            tryAddGem(event, "spider_fang");
+            tryAddGem(event, GemTypes.spider_fang);
         }
         if (key.equals(NamespacedKey.minecraft("chests/ruined_portal")) || key.equals(NamespacedKey.minecraft("chests/bastion_treasure")) || key.equals(NamespacedKey.minecraft("chests/ancient_city"))) {
-            tryAddGem(event, "ruby");
+            tryAddGem(event, GemTypes.ruby);
         }
         if (key.equals(NamespacedKey.minecraft("chests/desert_pyramid")) || key.equals(NamespacedKey.minecraft("chests/buried_treasure"))) {
-            tryAddGem(event, "lightstone");
+            tryAddGem(event, GemTypes.lightstone);
         }
         if (key.equals(NamespacedKey.minecraft("chests/ancient_city")) || key.equals(NamespacedKey.minecraft("chests/ancient_city_ice_box"))) {
-            tryAddGem(event, "shadow_stone");
+            tryAddGem(event, GemTypes.shadow_stone);
         }
 
     }
 
-    private static void tryAddGem(LootGenerateEvent event, String gemType) {
-        if (Math.random() <= JsonHandler.SpawnChanceReader(gemType, "chance")) {
+    private static void tryAddGem(LootGenerateEvent event, GemTypes gemType) {
+        if (Math.random() <= JsonHandler.SpawnChanceReader(gemType.toString(), "chance")) {
             ItemStack gem = ItemHandler.createGem(gemType);
             event.getLoot().add(gem);
         }

@@ -1,6 +1,7 @@
 package me.monkeee.weaponGems.Abilities;
 
 import de.tr7zw.changeme.nbtapi.NBT;
+import me.monkeee.weaponGems.GemTypes;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,7 +19,7 @@ public class DarkstoneAbility {
         if (weapon.getType().equals(Material.AIR)) return;
 
         boolean hasDarkstoneGem = NBT.get(weapon, nbt -> {
-            return nbt.getBoolean("darkstone");
+            return nbt.getBoolean(GemTypes.darkstone.toString());
         });
 
         if (!hasDarkstoneGem) return;
