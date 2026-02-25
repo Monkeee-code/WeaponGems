@@ -13,6 +13,8 @@ public class GemItemHandler {
     public static List<String> JadeItems = new ArrayList<>();
     public static List<String> RubyItems = new ArrayList<>();
     public static List<String> SpiderFangItems = new ArrayList<>();
+    public static List<String> LightStoneItems = new ArrayList<>();
+    public static List<String> ShadowStoneItems = new ArrayList<>();
 
     public static Map<String, List<String>> MapOfItems = new HashMap<>();
 
@@ -38,13 +40,19 @@ public class GemItemHandler {
         SpiderFangItems.add("axe");
         SpiderFangItems.add("mace");
 
+        LightStoneItems.add("chestplate");
+
+        ShadowStoneItems.add("boots");
+
         MapOfItems = Map.of(
                 "darkstone", DarkstoneItems,
                 "deflection_exe", DeflectionEyeItems,
                 "divan_core", DivanCoreItems,
                 "jade", JadeItems,
                 "ruby", RubyItems,
-                "spider_fang", SpiderFangItems
+                "spider_fang", SpiderFangItems,
+                "lightstone", LightStoneItems,
+                "shadow_stone", ShadowStoneItems
         );
     }
 }

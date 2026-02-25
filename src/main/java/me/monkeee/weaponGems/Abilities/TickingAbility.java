@@ -13,7 +13,7 @@ public class TickingAbility {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 JadeAbility.AbilityResistance(player);
                 DivanCoreAbility.AbilityHaste(player);
-
+                LightStoneAbility.AbilityRegeneration(player);
             }
         }, 0L, 20L);
     }

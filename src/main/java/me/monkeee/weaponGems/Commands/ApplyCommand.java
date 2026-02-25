@@ -88,14 +88,7 @@ public class ApplyCommand implements CommandExecutor, TabCompleter {
     }
 
     private static boolean isAlreadyApplied(ItemStack item, String gem) {
-        boolean hasDarkstone = NBT.get(item, nbt -> (boolean) nbt.getBoolean(gem));
-        boolean hasDeflectionEye = NBT.get(item, nbt -> (boolean) nbt.getBoolean(gem));
-        boolean hasDivanCore = NBT.get(item, nbt -> (boolean) nbt.getBoolean(gem));
-        boolean hasJade = NBT.get(item, nbt -> (boolean) nbt.getBoolean(gem));
-        boolean hasRuby = NBT.get(item, nbt -> (boolean) nbt.getBoolean(gem));
-        boolean hasSpiderFang = NBT.get(item, nbt -> (boolean) nbt.getBoolean(gem));
-
-        return hasDarkstone && hasDeflectionEye && hasDivanCore && hasJade && hasRuby && hasSpiderFang;
+        return NBT.get(item, nbt -> (boolean) nbt.getBoolean(gem));
     }
 
     @Override

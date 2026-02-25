@@ -7,6 +7,7 @@ import me.monkeee.weaponGems.Commands.GiveGemstone;
 import me.monkeee.weaponGems.Commands.WGReload;
 import me.monkeee.weaponGems.Events.EntityDamageEntityEvent;
 import me.monkeee.weaponGems.Events.LootTableGeneration;
+import me.monkeee.weaponGems.Events.OnEntityDamageEvent;
 import me.monkeee.weaponGems.Handlers.GemItemHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -39,6 +40,7 @@ public final class WeaponGems extends JavaPlugin {
         Objects.requireNonNull(getCommand("givegem")).setTabCompleter(new GiveGemstone());
         getServer().getPluginManager().registerEvents(new EntityDamageEntityEvent(), this);
         getServer().getPluginManager().registerEvents(new LootTableGeneration(), this);
+        getServer().getPluginManager().registerEvents(new OnEntityDamageEvent(), this);
     }
 
     public static WeaponGems getInstance() {

@@ -24,11 +24,12 @@ import java.util.List;
 public class GiveGemstone implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
-        if (!(sender instanceof Player)) return false;
-        if (!sender.isOp()) { sender.sendMessage(ChatColor.RED + "Only Operators can execute this command!"); return false; }
-        if (args[0].isEmpty()) { sender.sendMessage(ChatColor.RED + "Please, mention a gem to use!"); return false; }
-        ((Player) sender).getInventory().addItem(ItemHandler.createGem(args[0].toLowerCase()));
-        sender.sendMessage(ChatColor.GREEN+"You have been given a gem: "+ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(args[0], "name")));
+        if (!(sender instanceof Player player)) return false;
+        if (!player.isOp()) { player.sendMessage(ChatColor.RED + "Only Operators can execute this command!"); return false; }
+        if (args[0].isEmpty()) { player.sendMessage(ChatColor.RED + "Please, mention a gem to use!"); return false; }
+        if (!ListHandler.getGemList().contains(args[0])) { player.sendMessage(ChatColor.RED+"Gem \""+args[0]+"\" does not exist!"); return false; }
+        player.getInventory().addItem(ItemHandler.createGem(args[0].toLowerCase()));
+        player.sendMessage(ChatColor.GREEN+"You have been given a gem: "+ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(args[0], "name")));
         return true;
     }
 

@@ -20,6 +20,8 @@ public class LootTableGeneration implements Listener {
 
         LootTable table = event.getLootTable();
 
+        if (table == null) return;
+
         NamespacedKey key = table.getKey();
 
         if (key.equals(NamespacedKey.minecraft("chests/village/village_toolsmith"))) {
@@ -40,12 +42,18 @@ public class LootTableGeneration implements Listener {
         if (key.equals(NamespacedKey.minecraft("chests/ruined_portal")) || key.equals(NamespacedKey.minecraft("chests/bastion_treasure")) || key.equals(NamespacedKey.minecraft("chests/ancient_city"))) {
             tryAddGem(event, "ruby");
         }
+        if (key.equals(NamespacedKey.minecraft("chests/desert_pyramid")) || key.equals(NamespacedKey.minecraft("chests/buried_treasure"))) {
+            tryAddGem(event, "lightstone");
+        }
+        if (key.equals(NamespacedKey.minecraft("chests/ancient_city")) || key.equals(NamespacedKey.minecraft("chests/ancient_city_ice_box"))) {
+            tryAddGem(event, "shadow_stone");
+        }
 
     }
 
     private static void tryAddGem(LootGenerateEvent event, String gemType) {
         if (Math.random() <= JsonHandler.SpawnChanceReader(gemType, "chance")) {
-            ItemStack gem = ItemHandler.createGem(gemType); // your existing method
+            ItemStack gem = ItemHandler.createGem(gemType);
             event.getLoot().add(gem);
         }
     }
