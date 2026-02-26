@@ -11,9 +11,10 @@ public class TickingAbility {
         WeaponGems.getInstance().getLogger().info("Some abilities are ran every second!");
         Bukkit.getScheduler().runTaskTimer(WeaponGems.getInstance(), () -> {
             for (Player player : Bukkit.getOnlinePlayers()) {
-                JadeAbility.AbilityResistance(player);
-                DivanCoreAbility.AbilityHaste(player);
-                LightStoneAbility.AbilityRegeneration(player);
+                JadeAbility.AbilityReinforcement(player);
+                DivanCoreAbility.AbilityMinersFever(player);
+                LightStoneAbility.AbilityLongevity(player);
+                AngelFeatherAbility.AbilitySavingGrace(player);
             }
         }, 0L, 20L);
     }

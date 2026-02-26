@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class DeflectionEyeAbility {
 
-    public static void AbilityDeflectArrows(Player player, Arrow arrow, EntityDamageByEntityEvent event) {
+    public static void AbilityAichmophobia(Player player, Arrow arrow, EntityDamageByEntityEvent event) {
         ItemStack helmetSlot = player.getInventory().getHelmet();
 
         boolean helmetHasDeflectionEye = false;

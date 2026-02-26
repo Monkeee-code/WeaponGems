@@ -20,12 +20,12 @@ public class EntityDamageEntityEvent implements Listener {
 
         if (!(entity2 instanceof Player player)) return;
         if (entity1 instanceof Player dealer) {
-            DarkstoneAbility.AbilityBlindness(dealer, player);
+            DarkstoneAbility.AbilitySightDrain(dealer, player);
             RubyAbility.AbilityLifeSteal(dealer, event);
-            SpiderFangAbility.AbilityPoison(dealer, player);
+            SpiderFangAbility.AbilityArachnidsFang(dealer, player);
         }
         if (entity1 instanceof Arrow arrow) {
-            DeflectionEyeAbility.AbilityDeflectArrows(player, arrow, event);
+            DeflectionEyeAbility.AbilityAichmophobia(player, arrow, event);
         }
     }
 }

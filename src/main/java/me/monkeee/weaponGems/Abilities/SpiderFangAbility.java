@@ -10,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class SpiderFangAbility {
 
-    public static void AbilityPoison(Player dealer, Player player) {
+    public static void AbilityArachnidsFang(Player dealer, Player player) {
         if (dealer.getInventory().getItemInMainHand().getType().equals(Material.AIR)) return;
         ItemStack weapon = dealer.getInventory().getItemInMainHand();
 

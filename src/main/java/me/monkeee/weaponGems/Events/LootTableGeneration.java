@@ -11,13 +11,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.loot.LootTable;
 import org.bukkit.loot.Lootable;
 
-import javax.naming.Name;
-
 public class LootTableGeneration implements Listener {
 
     @EventHandler
     public static void onLootGenerate(LootGenerateEvent event) {
-        if (!(event.getInventoryHolder() instanceof Lootable lootable)) return;
+        if (!(event.getInventoryHolder() instanceof Lootable)) return;
 
         LootTable table = event.getLootTable();
 
@@ -48,6 +46,9 @@ public class LootTableGeneration implements Listener {
         }
         if (key.equals(NamespacedKey.minecraft("chests/ancient_city")) || key.equals(NamespacedKey.minecraft("chests/ancient_city_ice_box"))) {
             tryAddGem(event, GemTypes.shadow_stone);
+        }
+        if (key.equals(NamespacedKey.minecraft("chests/desert_pyramid"))) {
+            tryAddGem(event, GemTypes.angel_feather);
         }
 
     }

@@ -10,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class JadeAbility {
 
-    public static void AbilityResistance(Player player) {
+    public static void AbilityReinforcement(Player player) {
         ItemStack chestplateSlot = player.getInventory().getChestplate();
 
         boolean chestplateHasJadeGem = false;

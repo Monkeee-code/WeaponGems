@@ -8,11 +8,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.List;
-
 public class DarkstoneAbility {
 
-    public static void AbilityBlindness(Player dealer, Player player) {
+    public static void AbilitySightDrain(Player dealer, Player player) {
         if (dealer.getInventory().getItemInMainHand().getType().equals(Material.AIR)) return;
         ItemStack weapon = dealer.getInventory().getItemInMainHand();
 

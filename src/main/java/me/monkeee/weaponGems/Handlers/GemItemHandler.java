@@ -15,6 +15,7 @@ public class GemItemHandler {
     public static List<String> SpiderFangItems = new ArrayList<>();
     public static List<String> LightStoneItems = new ArrayList<>();
     public static List<String> ShadowStoneItems = new ArrayList<>();
+    public static List<String> AngelFeatherItems = new ArrayList<>();
 
     public static Map<String, List<String>> MapOfItems = new HashMap<>();
 
@@ -44,6 +45,8 @@ public class GemItemHandler {
 
         ShadowStoneItems.add("boots");
 
+        AngelFeatherItems.add("boots");
+
         MapOfItems = Map.of(
                 "darkstone", DarkstoneItems,
                 "deflection_exe", DeflectionEyeItems,
@@ -52,7 +55,8 @@ public class GemItemHandler {
                 "ruby", RubyItems,
                 "spider_fang", SpiderFangItems,
                 "lightstone", LightStoneItems,
-                "shadow_stone", ShadowStoneItems
+                "shadow_stone", ShadowStoneItems,
+                "angel_feather", AngelFeatherItems
         );
     }
 }

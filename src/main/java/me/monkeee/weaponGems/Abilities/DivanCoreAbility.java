@@ -10,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class DivanCoreAbility {
 
-    public static void AbilityHaste(Player player) {
+    public static void AbilityMinersFever(Player player) {
         ItemStack tool = player.getInventory().getItemInMainHand();
 
         if (tool.getType().equals(Material.AIR)) return;

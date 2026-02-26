@@ -9,6 +9,7 @@ public enum GemTypes {
     lightstone,
     ruby,
     shadow_stone,
-    spider_fang;
+    spider_fang,
+    angel_feather
 
 }
