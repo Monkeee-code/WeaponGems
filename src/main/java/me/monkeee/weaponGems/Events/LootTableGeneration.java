@@ -18,9 +18,6 @@ public class LootTableGeneration implements Listener {
         if (!(event.getInventoryHolder() instanceof Lootable)) return;
 
         LootTable table = event.getLootTable();
-
-        if (table == null) return;
-
         NamespacedKey key = table.getKey();
 
         if (key.equals(NamespacedKey.minecraft("chests/village/village_toolsmith"))) {

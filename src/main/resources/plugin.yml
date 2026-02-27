@@ -11,3 +11,5 @@ commands:
     description: Reloads the plugin's config
   wgapply:
     description: Applies the item and gem together
+  wgcds:
+    description: Get's the player's gem cooldowns

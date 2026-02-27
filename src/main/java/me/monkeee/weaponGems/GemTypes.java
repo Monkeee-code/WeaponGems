@@ -10,6 +10,7 @@ public enum GemTypes {
     ruby,
     shadow_stone,
     spider_fang,
-    angel_feather
+    angel_feather,
+    limitless_gem
 
 }

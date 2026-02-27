@@ -1,9 +1,6 @@
 package me.monkeee.weaponGems.Events;
 
-import me.monkeee.weaponGems.Abilities.DarkstoneAbility;
-import me.monkeee.weaponGems.Abilities.DeflectionEyeAbility;
-import me.monkeee.weaponGems.Abilities.RubyAbility;
-import me.monkeee.weaponGems.Abilities.SpiderFangAbility;
+import me.monkeee.weaponGems.Abilities.*;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -23,6 +20,7 @@ public class EntityDamageEntityEvent implements Listener {
             DarkstoneAbility.AbilitySightDrain(dealer, player);
             RubyAbility.AbilityLifeSteal(dealer, event);
             SpiderFangAbility.AbilityArachnidsFang(dealer, player);
+            LimitlessGemAbility.AbilityLimitBreaker(player);
         }
         if (entity1 instanceof Arrow arrow) {
             DeflectionEyeAbility.AbilityAichmophobia(player, arrow, event);

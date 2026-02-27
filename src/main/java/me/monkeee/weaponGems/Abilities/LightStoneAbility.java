@@ -2,7 +2,7 @@ package me.monkeee.weaponGems.Abilities;
 
 import de.tr7zw.changeme.nbtapi.NBT;
 import me.monkeee.weaponGems.GemTypes;
-import me.monkeee.weaponGems.Handlers.TimerHandler;
+import me.monkeee.weaponGems.Handlers.CooldownHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -33,9 +33,9 @@ public class LightStoneAbility {
 
         if ((maxHealth*0.25) < health) return;
 
-        if (TimerHandler.isOnCooldown(player, GemTypes.lightstone, 20000)) return;
+        if (CooldownHandler.isOnCooldown(player, GemTypes.lightstone)) return;
 
-        TimerHandler.setCooldown(player, GemTypes.lightstone);
+        CooldownHandler.setCooldown(player, GemTypes.lightstone, 20*1000);
 
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 120, 1, true, false));
         player.sendMessage(ChatColor.GREEN+"Your ability "+ChatColor.YELLOW+"Longevity"+ChatColor.GREEN+" has been "+ChatColor.WHITE+"activated!");

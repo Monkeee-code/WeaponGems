@@ -29,6 +29,7 @@ shadowJar {
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
+    compileOnly("com.github.retrooper:packetevents-spigot:2.11.2")
     implementation("de.tr7zw:item-nbt-api:2.15.5")
     implementation('org.json:json:20240303')
 }

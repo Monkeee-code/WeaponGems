@@ -17,7 +17,7 @@ public class JadeAbility {
 
         if (chestplateSlot != null && chestplateSlot.getType() != Material.AIR) {
             chestplateHasJadeGem = NBT.get(chestplateSlot, nbt -> {
-                return nbt.getBoolean(GemTypes.divan_core.toString());
+                return nbt.getBoolean(GemTypes.jade.toString());
             });
         }
 

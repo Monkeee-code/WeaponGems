@@ -2,7 +2,7 @@ package me.monkeee.weaponGems.Abilities;
 
 import de.tr7zw.changeme.nbtapi.NBT;
 import me.monkeee.weaponGems.GemTypes;
-import me.monkeee.weaponGems.Handlers.TimerHandler;
+import me.monkeee.weaponGems.Handlers.CooldownHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -25,9 +25,9 @@ public class ShadowStoneAbility {
 
         if (!bootsHaveShadowStone) return;
 
-        if (TimerHandler.isOnCooldown(player, GemTypes.shadow_stone, 40*1000)) return;
+        if (CooldownHandler.isOnCooldown(player, GemTypes.shadow_stone)) return;
 
-        TimerHandler.setCooldown(player, GemTypes.shadow_stone);
+        CooldownHandler.setCooldown(player, GemTypes.shadow_stone, 40*1000);
 
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100, 1, true, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 200, 0, true, false));

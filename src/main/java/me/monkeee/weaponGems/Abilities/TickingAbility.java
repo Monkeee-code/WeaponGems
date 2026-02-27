@@ -16,6 +16,6 @@ public class TickingAbility {
                 LightStoneAbility.AbilityLongevity(player);
                 AngelFeatherAbility.AbilitySavingGrace(player);
             }
-        }, 0L, 20L);
+        }, 0L, 10L);
     }
 }
