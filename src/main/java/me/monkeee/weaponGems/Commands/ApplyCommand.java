@@ -25,23 +25,22 @@ public class ApplyCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         if (!(sender instanceof Player player)) return false;
         if (args.length == 0) {
-            player.sendMessage(ChatColor.RED+"Are you sure you want to do this?");
-            player.sendMessage(ChatColor.RED+"When a gem is "+ChatColor.YELLOW+"applied"+ChatColor.RED+", it won't be able to be removed!");
-            player.sendMessage(ChatColor.GOLD+"If you are sure, type "+ChatColor.GREEN+"/wgapply confirm");
+            player.sendMessage(ChatColor.RED+"[?] Are you sure you want to do this?");
+            player.sendMessage(ChatColor.GOLD+"[?] If you are sure, type "+ChatColor.GREEN+"/wgapply confirm");
             return false;
         }
 
         ItemStack MainHand = player.getInventory().getItemInMainHand();
         ItemStack OffHand = player.getInventory().getItemInOffHand();
         if (MainHand.getType().equals(Material.valueOf("AIR")) || OffHand.getType().equals(Material.valueOf("AIR"))) {
-            player.sendMessage(ChatColor.RED+"Please, use a valid item!");
+            player.sendMessage(ChatColor.RED+"[!] Please, use a valid item!");
             return false;
         }
         boolean isGem = NBT.get(OffHand, nbt -> {
            return nbt.getBoolean("isGem");
         });
         if (!isGem) {
-            player.sendMessage(ChatColor.RED+"The item in offhand is not a gem!");
+            player.sendMessage(ChatColor.RED+"[!] The item in offhand is not a gem!");
             return false;
         }
 
@@ -56,7 +55,7 @@ public class ApplyCommand implements CommandExecutor, TabCompleter {
         if (mainHandMeta == null) return;
         List<String> lore = mainHandMeta.getLore() != null ? new ArrayList<>(mainHandMeta.getLore()) : new ArrayList<>();
         if (isAlreadyApplied(mainHand, GemType)) {
-            player.sendMessage(ChatColor.RED+"The item already has this type of gem!");
+            player.sendMessage(ChatColor.RED+"[!] The item already has this type of gem!");
             return;
         }
         if (isCorrectItem(mainHand, GemType)) {
@@ -68,7 +67,7 @@ public class ApplyCommand implements CommandExecutor, TabCompleter {
             });
             player.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
         }else {
-            player.sendMessage(ChatColor.RED+"The item is not valid for this gem!");
+            player.sendMessage(ChatColor.RED+"[!] The item is not valid for this gem!");
             return;
         }
 

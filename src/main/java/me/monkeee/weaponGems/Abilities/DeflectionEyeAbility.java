@@ -1,7 +1,7 @@
 package me.monkeee.weaponGems.Abilities;
 
 import de.tr7zw.changeme.nbtapi.NBT;
-import me.monkeee.weaponGems.GemTypes;
+import me.monkeee.weaponGems.GemID;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
@@ -18,7 +18,7 @@ public class DeflectionEyeAbility {
 
         if (helmetSlot != null && helmetSlot.getType() != Material.AIR) {
             helmetHasDeflectionEye = NBT.get(helmetSlot, nbt -> {
-                return nbt.getBoolean(GemTypes.deflection_eye.toString());
+                return nbt.getBoolean(GemID.deflection_eye.toString());
             });
         }
 

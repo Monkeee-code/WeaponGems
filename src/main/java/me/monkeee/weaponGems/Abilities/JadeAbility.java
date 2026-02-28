@@ -1,7 +1,7 @@
 package me.monkeee.weaponGems.Abilities;
 
 import de.tr7zw.changeme.nbtapi.NBT;
-import me.monkeee.weaponGems.GemTypes;
+import me.monkeee.weaponGems.GemID;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -17,7 +17,7 @@ public class JadeAbility {
 
         if (chestplateSlot != null && chestplateSlot.getType() != Material.AIR) {
             chestplateHasJadeGem = NBT.get(chestplateSlot, nbt -> {
-                return nbt.getBoolean(GemTypes.jade.toString());
+                return nbt.getBoolean(GemID.jade.toString());
             });
         }
 

@@ -1,7 +1,7 @@
 package me.monkeee.weaponGems.Abilities;
 
 import de.tr7zw.changeme.nbtapi.NBT;
-import me.monkeee.weaponGems.GemTypes;
+import me.monkeee.weaponGems.GemID;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -18,7 +18,7 @@ public class AngelFeatherAbility {
 
         if (bootsSlot != null && bootsSlot.getType() != Material.AIR) {
             bootsHaveAngelFeather = NBT.get(bootsSlot, nbt -> {
-                return nbt.getBoolean(GemTypes.angel_feather.toString());
+                return nbt.getBoolean(GemID.angel_feather.toString());
             });
         }
 

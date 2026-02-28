@@ -13,3 +13,5 @@ commands:
     description: Applies the item and gem together
   wgcds:
     description: Get's the player's gem cooldowns
+  wgremove:
+    description: Remove a specific gem from an item

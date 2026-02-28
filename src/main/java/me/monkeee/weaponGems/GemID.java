@@ -1,6 +1,6 @@
 package me.monkeee.weaponGems;
 
-public enum GemTypes {
+public enum GemID {
 
     darkstone,
     deflection_eye,

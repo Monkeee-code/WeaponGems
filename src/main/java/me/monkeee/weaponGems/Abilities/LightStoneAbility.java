@@ -1,7 +1,7 @@
 package me.monkeee.weaponGems.Abilities;
 
 import de.tr7zw.changeme.nbtapi.NBT;
-import me.monkeee.weaponGems.GemTypes;
+import me.monkeee.weaponGems.GemID;
 import me.monkeee.weaponGems.Handlers.CooldownHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -22,7 +22,7 @@ public class LightStoneAbility {
 
         if (chestplateSlot != null && chestplateSlot.getType() != Material.AIR) {
             chestplateHasJadeGem = NBT.get(chestplateSlot, nbt -> {
-                return nbt.getBoolean(GemTypes.lightstone.toString());
+                return nbt.getBoolean(GemID.lightstone.toString());
             });
         }
 
@@ -33,11 +33,11 @@ public class LightStoneAbility {
 
         if ((maxHealth*0.25) < health) return;
 
-        if (CooldownHandler.isOnCooldown(player, GemTypes.lightstone)) return;
+        if (CooldownHandler.isOnCooldown(player, GemID.lightstone)) return;
 
-        CooldownHandler.setCooldown(player, GemTypes.lightstone, 20*1000);
+        CooldownHandler.setCooldown(player, GemID.lightstone, 20*1000);
 
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 120, 1, true, false));
-        player.sendMessage(ChatColor.GREEN+"Your ability "+ChatColor.YELLOW+"Longevity"+ChatColor.GREEN+" has been "+ChatColor.WHITE+"activated!");
+        player.sendMessage(ChatColor.GREEN+"[!] Your ability "+ChatColor.YELLOW+"Longevity"+ChatColor.GREEN+" has been "+ChatColor.WHITE+"activated!");
     }
 }

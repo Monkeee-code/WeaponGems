@@ -15,6 +15,7 @@ public class TickingAbility {
                 DivanCoreAbility.AbilityMinersFever(player);
                 LightStoneAbility.AbilityLongevity(player);
                 AngelFeatherAbility.AbilitySavingGrace(player);
+                LimitlessGemAbility.AbilityLimitBreaker(player);
             }
         }, 0L, 10L);
     }

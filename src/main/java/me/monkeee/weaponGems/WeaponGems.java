@@ -1,11 +1,9 @@
 package me.monkeee.weaponGems;
 
 import de.tr7zw.changeme.nbtapi.NBT;
+import me.monkeee.weaponGems.Abilities.CooldownNotification;
 import me.monkeee.weaponGems.Abilities.TickingAbility;
-import me.monkeee.weaponGems.Commands.ApplyCommand;
-import me.monkeee.weaponGems.Commands.GetCooldownCommand;
-import me.monkeee.weaponGems.Commands.GiveGemstone;
-import me.monkeee.weaponGems.Commands.WGReload;
+import me.monkeee.weaponGems.Commands.*;
 import me.monkeee.weaponGems.Events.EntityDamageEntityEvent;
 import me.monkeee.weaponGems.Events.LootTableGeneration;
 import me.monkeee.weaponGems.Events.OnEntityDamageEvent;
@@ -34,6 +32,7 @@ public final class WeaponGems extends JavaPlugin {
         saveResource("items.json", replaceJSON);
 
         TickingAbility.startTicking();
+        CooldownNotification.startNotificationTimer();
         GemItemHandler.ApplyItemsToList();
         Objects.requireNonNull(getCommand("wgapply")).setTabCompleter(new ApplyCommand());
         Objects.requireNonNull(getCommand("wgapply")).setExecutor(new ApplyCommand());
@@ -41,6 +40,8 @@ public final class WeaponGems extends JavaPlugin {
         Objects.requireNonNull(getCommand("givegem")).setExecutor(new GiveGemstone());
         Objects.requireNonNull(getCommand("givegem")).setTabCompleter(new GiveGemstone());
         Objects.requireNonNull(getCommand("wgcds")).setExecutor(new GetCooldownCommand());
+        Objects.requireNonNull(getCommand("wgremove")).setExecutor(new RemoveGemCommand());
+        Objects.requireNonNull(getCommand("wgremove")).setTabCompleter(new RemoveGemCommand());
         getServer().getPluginManager().registerEvents(new EntityDamageEntityEvent(), this);
         getServer().getPluginManager().registerEvents(new LootTableGeneration(), this);
         getServer().getPluginManager().registerEvents(new OnEntityDamageEvent(), this);

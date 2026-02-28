@@ -10,11 +10,11 @@ public class WGReload implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.isOp()) {
-            sender.sendMessage(ChatColor.RED + "You're not an op! :(");
+            sender.sendMessage(ChatColor.RED + "[!] You're not an op! :(");
             return false;
         }
         WeaponGems.getInstance().reloadConfig();
-        sender.sendMessage(ChatColor.GREEN+"The config has been reloaded successfully!");
+        sender.sendMessage(ChatColor.GREEN+"[!] The config has been reloaded successfully!");
         return true;
     }
 }

@@ -1,7 +1,7 @@
 package me.monkeee.weaponGems.Handlers;
 
 import de.tr7zw.changeme.nbtapi.NBT;
-import me.monkeee.weaponGems.GemTypes;
+import me.monkeee.weaponGems.GemID;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ItemHandler {
 
-    public static ItemStack createGem(GemTypes gem_type) {
+    public static ItemStack createGem(GemID gem_type) {
         ItemStack gem = new ItemStack(Material.valueOf(JsonHandler.String_reader(gem_type.toString(), "item").toUpperCase()));
         ItemMeta gem_meta = gem.getItemMeta();
         assert gem_meta != null;
@@ -26,6 +26,8 @@ public class ItemHandler {
         Lore.add("");
         Lore.add(ChatColor.DARK_GRAY+"Applicable Items:");
         applyApplicableItemsLore(gem_type, Lore);
+        Lore.add("");
+        Lore.add(ChatColor.DARK_GRAY+"GEM_ID: "+gem_type);
         gem_meta.setLore(Lore);
         gem_meta.setMaxStackSize(1);
         gem_meta.setFireResistant(true);
@@ -38,7 +40,7 @@ public class ItemHandler {
         return gem;
     }
 
-    private static void applyApplicableItemsLore(GemTypes gemType, List<String> lore) {
+    private static void applyApplicableItemsLore(GemID gemType, List<String> lore) {
         for (String line : GemItemHandler.MapOfItems.get(gemType.toString())) {
             lore.add(ChatColor.GRAY+line);
         }
