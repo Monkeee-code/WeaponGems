@@ -4,10 +4,7 @@ import de.tr7zw.changeme.nbtapi.NBT;
 import me.monkeee.weaponGems.Abilities.CooldownNotification;
 import me.monkeee.weaponGems.Abilities.TickingAbility;
 import me.monkeee.weaponGems.Commands.*;
-import me.monkeee.weaponGems.Events.EntityDamageEntityEvent;
-import me.monkeee.weaponGems.Events.LootTableGeneration;
-import me.monkeee.weaponGems.Events.OnEntityDamageEvent;
-import me.monkeee.weaponGems.Events.PreventItemInteractionEvent;
+import me.monkeee.weaponGems.Events.*;
 import me.monkeee.weaponGems.Handlers.GemItemHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,8 +25,7 @@ public final class WeaponGems extends JavaPlugin {
         }
         saveDefaultConfig();
 
-        boolean replaceJSON = getConfig().getBoolean("replace-json");
-        saveResource("items.json", replaceJSON);
+        saveResource("items.json", getConfig().getBoolean("replace-json"));
 
         TickingAbility.startTicking();
         CooldownNotification.startNotificationTimer();
@@ -46,6 +42,7 @@ public final class WeaponGems extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new LootTableGeneration(), this);
         getServer().getPluginManager().registerEvents(new OnEntityDamageEvent(), this);
         getServer().getPluginManager().registerEvents(new PreventItemInteractionEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerConnectEvent(), this);
     }
 
     public static WeaponGems getInstance() {
