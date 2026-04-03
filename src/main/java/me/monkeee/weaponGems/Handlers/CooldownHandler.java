@@ -44,4 +44,8 @@ public class CooldownHandler {
 
         return ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(gem.toString(), "name")+ChatColor.RESET+" -> "+Math.max(remaining/1000, 0) +"s");
     }
+
+    public static void removePlayer(UUID uuid) {
+        cooldowns.remove(uuid);
+    }
 }
