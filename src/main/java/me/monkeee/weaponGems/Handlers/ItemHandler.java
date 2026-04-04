@@ -40,7 +40,7 @@ public class ItemHandler {
         return gem;
     }
 
-    private static void applyApplicableItemsLore(GemID gemType, List<String> lore) {
+    public static void applyApplicableItemsLore(GemID gemType, List<String> lore) {
         for (String line : GemItemHandler.MapOfItems.get(gemType.toString())) {
             lore.add(ChatColor.GRAY+line);
         }
