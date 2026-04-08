@@ -1,6 +1,10 @@
 package me.monkeee.weaponGems.Events;
 
-import me.monkeee.weaponGems.Abilities.*;
+import me.monkeee.weaponGems.API.GemDefinition;
+import me.monkeee.weaponGems.API.GemDealerAbility;
+import me.monkeee.weaponGems.API.GemRegistry;
+import me.monkeee.weaponGems.Abilities.DeflectionEyeAbility;
+import me.monkeee.weaponGems.WeaponGems;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -12,18 +16,30 @@ public class EntityDamageEntityEvent implements Listener {
 
     @EventHandler
     public static void onEntityDamage(EntityDamageByEntityEvent event) {
-        Entity entity1 = event.getDamager();
-        Entity entity2 = event.getEntity();
+        Entity damager = event.getDamager();
+        Entity victim  = event.getEntity();
 
-        if (!(entity2 instanceof Player player)) return;
-        if (entity1 instanceof Player dealer) {
-            DarkstoneAbility.AbilitySightDrain(dealer, player);
-            RubyAbility.AbilityLifeSteal(dealer, event);
-            SpiderFangAbility.AbilityArachnidsFang(dealer, player);
-            LimitlessGemAbility.AbilityLimitBreaker(player);
+        if (!(victim instanceof Player playerVictim)) return;
+
+        // Dealer-side abilities: iterate every registered gem
+        if (damager instanceof Player playerDealer) {
+            for (GemDefinition gem : GemRegistry.getAll()) {
+                GemDealerAbility ability = gem.getDealerAbility();
+                if (ability != null) {
+                    try {
+                        ability.onDamageDealt(playerDealer, playerVictim, event);
+                    } catch (Exception e) {
+                        WeaponGems.getInstance().getLogger().warning(
+                                "Error in dealer ability for gem '" + gem.getID() + "': " + e.getMessage()
+                        );
+                    }
+                }
+            }
         }
-        if (entity1 instanceof Arrow arrow) {
-            DeflectionEyeAbility.AbilityAichmophobia(player, arrow, event);
+
+        // Arrow-specific abilities remain hardcoded (deflection_eye checks its own slot)
+        if (damager instanceof Arrow arrow) {
+            DeflectionEyeAbility.AbilityAichmophobia(playerVictim, arrow, event);
         }
     }
 }

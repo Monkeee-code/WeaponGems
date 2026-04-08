@@ -1,8 +1,8 @@
 package me.monkeee.weaponGems.Events;
 
-import me.monkeee.weaponGems.GemID;
+import me.monkeee.weaponGems.API.GemDefinition;
+import me.monkeee.weaponGems.API.GemRegistry;
 import me.monkeee.weaponGems.Handlers.ItemHandler;
-import me.monkeee.weaponGems.Handlers.JsonHandler;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,43 +20,17 @@ public class LootTableGeneration implements Listener {
         LootTable table = event.getLootTable();
         NamespacedKey key = table.getKey();
 
-        if (key.equals(NamespacedKey.minecraft("chests/village/village_toolsmith"))) {
-            tryAddGem(event, GemID.divan_core);
+        for (GemDefinition gem : GemRegistry.getAll()) {
+            if (gem.getLootTables().contains(key)) {
+                tryAddGem(event, gem);
+            }
         }
-        if (key.equals(NamespacedKey.minecraft("chests/end_city_treasure"))) {
-            tryAddGem(event, GemID.deflection_eye);
-        }
-        if (key.equals(NamespacedKey.minecraft("chests/village/village_weaponsmith"))) {
-            tryAddGem(event, GemID.darkstone);
-        }
-        if (key.equals(NamespacedKey.minecraft("chests/village/village_armorer"))) {
-            tryAddGem(event, GemID.jade);
-        }
-        if (key.equals(NamespacedKey.minecraft("chests/simple_dungeon"))) {
-            tryAddGem(event, GemID.spider_fang);
-        }
-        if (key.equals(NamespacedKey.minecraft("chests/ruined_portal")) || key.equals(NamespacedKey.minecraft("chests/bastion_treasure")) || key.equals(NamespacedKey.minecraft("chests/ancient_city"))) {
-            tryAddGem(event, GemID.ruby);
-        }
-        if (key.equals(NamespacedKey.minecraft("chests/desert_pyramid")) || key.equals(NamespacedKey.minecraft("chests/buried_treasure"))) {
-            tryAddGem(event, GemID.lightstone);
-        }
-        if (key.equals(NamespacedKey.minecraft("chests/ancient_city")) || key.equals(NamespacedKey.minecraft("chests/ancient_city_ice_box"))) {
-            tryAddGem(event, GemID.shadow_stone);
-        }
-        if (key.equals(NamespacedKey.minecraft("chests/desert_pyramid"))) {
-            tryAddGem(event, GemID.angel_feather);
-        }
-        if (key.equals(NamespacedKey.minecraft("chests/woodland_mansion"))) {
-            tryAddGem(event, GemID.limitless_gem);
-        }
-
     }
 
-    private static void tryAddGem(LootGenerateEvent event, GemID gemType) {
-        if (Math.random() <= JsonHandler.SpawnChanceReader(gemType.toString(), "chance")) {
-            ItemStack gem = ItemHandler.createGem(gemType);
-            event.getLoot().add(gem);
+    private static void tryAddGem(LootGenerateEvent event, GemDefinition gem) {
+        if (Math.random() <= gem.getSpawnChance()) {
+            ItemStack item = ItemHandler.createGem(gem.getID());
+            event.getLoot().add(item);
         }
     }
 }

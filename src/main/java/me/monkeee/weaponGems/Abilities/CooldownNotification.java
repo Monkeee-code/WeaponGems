@@ -1,13 +1,13 @@
 package me.monkeee.weaponGems.Abilities;
 
-import me.monkeee.weaponGems.GemID;
-import me.monkeee.weaponGems.Handlers.ListHandler;
 import me.monkeee.weaponGems.WeaponGems;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import static me.monkeee.weaponGems.Handlers.CooldownHandler.cooldowns;
 import static me.monkeee.weaponGems.Handlers.JsonHandler.String_reader;
@@ -17,22 +17,26 @@ public class CooldownNotification {
     public static void startNotificationTimer() {
         Bukkit.getScheduler().runTaskTimer(WeaponGems.getInstance(), () -> {
             for (Player player : Bukkit.getOnlinePlayers()) {
-                if (!cooldowns.containsKey(player.getUniqueId())) continue;
+                UUID uuid = player.getUniqueId();
+                if (!cooldowns.containsKey(uuid)) continue;
 
-                Map<GemID, Long> abilities = cooldowns.get(player.getUniqueId());
+                Map<String, Long> abilities = cooldowns.get(uuid);
 
-                for (String gem : ListHandler.getGemList()) {
-                    GemID gemT = GemID.valueOf(gem);
-
-                    if (!abilities.containsKey(gemT)) continue;
-
-                    long endTime = abilities.get(gemT);
-
+                // Iterate over a copy to allow safe removal
+                new HashMap<>(abilities).forEach((gemId, endTime) -> {
                     if (System.currentTimeMillis() > endTime) {
-                        player.sendMessage(ChatColor.GREEN+"Your gem "+ChatColor.translateAlternateColorCodes('&', String_reader(gem, "name"))+ChatColor.GREEN+" is off cooldown!");
-                        abilities.remove(gemT);
+                        String displayName;
+                        try {
+                            displayName = String_reader(gemId, "name");
+                        } catch (Exception e) {
+                            displayName = gemId; // fallback for addon gems with no JSON entry
+                        }
+                        player.sendMessage(ChatColor.GREEN + "Your gem "
+                                + ChatColor.translateAlternateColorCodes('&', displayName)
+                                + ChatColor.GREEN + " is off cooldown!");
+                        abilities.remove(gemId);
                     }
-                }
+                });
             }
         }, 0L, 10L);
     }

@@ -1,6 +1,9 @@
 package me.monkeee.weaponGems.Events;
 
-import me.monkeee.weaponGems.Abilities.ShadowStoneAbility;
+import me.monkeee.weaponGems.API.GemDamageAbility;
+import me.monkeee.weaponGems.API.GemDefinition;
+import me.monkeee.weaponGems.API.GemRegistry;
+import me.monkeee.weaponGems.WeaponGems;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,9 +15,19 @@ public class OnEntityDamageEvent implements Listener {
     @EventHandler
     public static void onDamage(EntityDamageEvent event) {
         Entity entity = event.getEntity();
+        if (!(entity instanceof Player player)) return;
 
-        if (entity instanceof Player player) {
-            ShadowStoneAbility.AbilityLastEcho(player);
+        for (GemDefinition gem : GemRegistry.getAll()) {
+            GemDamageAbility ability = gem.getDamageAbility();
+            if (ability != null) {
+                try {
+                    ability.onDamaged(player, event);
+                } catch (Exception e) {
+                    WeaponGems.getInstance().getLogger().warning(
+                            "Error in damage ability for gem '" + gem.getID() + "': " + e.getMessage()
+                    );
+                }
+            }
         }
     }
 }

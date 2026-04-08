@@ -1,33 +1,26 @@
 package me.monkeee.weaponGems.Handlers;
 
-import me.monkeee.weaponGems.WeaponGems;
-import org.json.JSONObject;
+import me.monkeee.weaponGems.API.GemRegistry;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class ListHandler {
 
+    /**
+     * Returns all registered gem IDs — built-in and addon gems alike.
+     */
     public static List<String> getGemList() {
-        File file = new File(WeaponGems.getInstance().getDataFolder(), "items.json");
-        try {
-            String content = Files.readString(file.toPath());
-            JSONObject json = new JSONObject(content);
-            return new ArrayList<>(json.keySet());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return new ArrayList<>(GemRegistry.getAllIDs());
     }
 
     public static List<String> GetBetterList(List<String> list, String[] args, int argStage) {
+        if (argStage >= args.length) return List.of();
         List<String> completions = null;
-        String input = args[argStage];
+        String input = args[argStage].toLowerCase();
         for (String s : list) {
-            if (s.toLowerCase().startsWith(input) || s.toUpperCase().startsWith(input)) {
+            if (s.toLowerCase().startsWith(input)) {
                 if (completions == null) {
                     completions = new ArrayList<>();
                 }
@@ -35,6 +28,6 @@ public class ListHandler {
             }
         }
         if (completions != null) Collections.sort(completions);
-        return completions;
+        return completions != null ? completions : List.of();
     }
 }
