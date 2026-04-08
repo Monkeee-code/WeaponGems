@@ -1,6 +1,7 @@
 package me.monkeee.weaponGems.Commands;
 
 import de.tr7zw.changeme.nbtapi.NBT;
+import me.monkeee.weaponGems.API.GemRegistry;
 import me.monkeee.weaponGems.GemID;
 import me.monkeee.weaponGems.Handlers.ItemHandler;
 import me.monkeee.weaponGems.Handlers.JsonHandler;
@@ -40,13 +41,13 @@ public class RemoveGemCommand implements CommandExecutor, TabCompleter {
         }
 
         ItemStack item = player.getInventory().getItemInMainHand();
-        GemID gem = GemID.valueOf(args[0]);
+        String gem = args[0];
         if (item.getType() == Material.AIR) return false;
         removeGem(item, player, gem);
         return true;
     }
 
-    private static void removeGem(ItemStack item, Player player, GemID gem) {
+    private static void removeGem(ItemStack item, Player player, String gem) {
         if (!hasGem(gem, item)) {
             player.sendMessage(ChatColor.RED+"[!] Item does not have the specified gem!");
             return;
@@ -57,30 +58,30 @@ public class RemoveGemCommand implements CommandExecutor, TabCompleter {
         assert itemMeta != null;
         assert itemLore != null;
         if (isDestroyed()) {
-            Objects.requireNonNull(itemLore).remove(ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(gem.toString(), "name")));
+            Objects.requireNonNull(itemLore).remove(ChatColor.translateAlternateColorCodes('&', GemRegistry.get(gem).get().getDisplayName()));
             itemMeta.setLore(itemLore);
             item.setItemMeta(itemMeta);
 
             NBT.modify(item, nbt -> {
-                nbt.removeKey(gem.toString());
+                nbt.removeKey(gem);
             });
-            player.sendMessage(ChatColor.YELLOW+gem.toString()+ChatColor.GREEN+" has been removed from "+ChatColor.WHITE+item.getType());
+            player.sendMessage(ChatColor.YELLOW+ gem+ChatColor.GREEN+" has been removed from "+ChatColor.WHITE+item.getType());
             player.sendMessage(ChatColor.RED+"[!] The gem has unfortunately been Destroyed!");
             return;
         }
-        Objects.requireNonNull(itemLore).remove(ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(gem.toString(), "name")));
+        Objects.requireNonNull(itemLore).remove(ChatColor.translateAlternateColorCodes('&', GemRegistry.get(gem).get().getDisplayName()));
         itemMeta.setLore(itemLore);
         item.setItemMeta(itemMeta);
 
         NBT.modify(item, nbt -> {
-            nbt.removeKey(gem.toString());
+            nbt.removeKey(gem);
         });
-        player.sendMessage(ChatColor.YELLOW+gem.toString()+ChatColor.GREEN+" has been removed from "+ChatColor.WHITE+item.getType());
+        player.sendMessage(ChatColor.YELLOW+gem+ChatColor.GREEN+" has been removed from "+ChatColor.WHITE+item.getType());
         player.getInventory().addItem(ItemHandler.createGem(gem));
     }
 
-    private static boolean hasGem(GemID gem, ItemStack item) {
-        return NBT.get(item, nbt -> (boolean) nbt.getBoolean(gem.toString()));
+    private static boolean hasGem(String gem, ItemStack item) {
+        return NBT.get(item, nbt -> (boolean) nbt.getBoolean(gem));
     }
 
     private static boolean isDestroyed() {
