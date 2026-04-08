@@ -1,6 +1,8 @@
 package me.monkeee.weaponGems.Commands;
 
 import de.tr7zw.changeme.nbtapi.NBT;
+import me.monkeee.weaponGems.API.GemDefinition;
+import me.monkeee.weaponGems.API.GemRegistry;
 import me.monkeee.weaponGems.Handlers.GemItemHandler;
 import me.monkeee.weaponGems.Handlers.JsonHandler;
 import me.monkeee.weaponGems.Handlers.ListHandler;
@@ -60,7 +62,7 @@ public class ApplyCommand implements CommandExecutor, TabCompleter {
         }
         if (isCorrectItem(mainHand, GemType)) {
             NBT.modify(mainHand, nbt -> {
-                lore.add(ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(GemType, "name")));
+                lore.add(ChatColor.translateAlternateColorCodes('&', GemRegistry.get(GemType).get().getDisplayName()));
                 mainHandMeta.setLore(lore);
                 mainHand.setItemMeta(mainHandMeta);
                 nbt.setBoolean(GemType, true);
