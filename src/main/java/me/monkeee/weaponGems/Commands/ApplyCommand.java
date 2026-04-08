@@ -1,10 +1,7 @@
 package me.monkeee.weaponGems.Commands;
 
 import de.tr7zw.changeme.nbtapi.NBT;
-import me.monkeee.weaponGems.API.GemDefinition;
 import me.monkeee.weaponGems.API.GemRegistry;
-import me.monkeee.weaponGems.Handlers.GemItemHandler;
-import me.monkeee.weaponGems.Handlers.JsonHandler;
 import me.monkeee.weaponGems.Handlers.ListHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -85,7 +82,7 @@ public class ApplyCommand implements CommandExecutor, TabCompleter {
     private static boolean isCorrectItem(ItemStack item, String gem) {
         Pattern PREFIX = Pattern.compile("^[a-z]+_");
         Matcher matcher = PREFIX.matcher(item.getType().toString().toLowerCase());
-        return GemItemHandler.MapOfItems.get(gem).contains(matcher.replaceFirst(""));
+        return GemRegistry.get(gem).get().getApplicableItems().contains(matcher.replaceFirst(""));
     }
 
     private static boolean isAlreadyApplied(ItemStack item, String gem) {

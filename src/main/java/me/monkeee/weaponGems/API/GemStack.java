@@ -1,7 +1,6 @@
 package me.monkeee.weaponGems.API;
 
 import de.tr7zw.changeme.nbtapi.NBT;
-import me.monkeee.weaponGems.Handlers.GemItemHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -59,7 +58,7 @@ public class GemStack {
     }
 
     public static void appendApplicableItemsLore(String gemId, List<String> lore) {
-        List<String> items = GemItemHandler.MapOfItems.get(gemId);
+        List<String> items = GemRegistry.get(gemId).get().getApplicableItems();
         if (items != null) {
             for (String item : items) {
                 lore.add(ChatColor.GRAY + item);

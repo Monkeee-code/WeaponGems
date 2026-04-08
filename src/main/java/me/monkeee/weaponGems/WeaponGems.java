@@ -6,7 +6,6 @@ import me.monkeee.weaponGems.Abilities.TickingAbility;
 import me.monkeee.weaponGems.Commands.*;
 import me.monkeee.weaponGems.Events.*;
 import me.monkeee.weaponGems.Handlers.GemRegistrar;
-import me.monkeee.weaponGems.Handlers.GemItemHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -31,13 +30,6 @@ public final class WeaponGems extends JavaPlugin {
         // 1. Register all built-in gems from items.json into GemRegistry
         GemRegistrar.registerAll(getDataFolder());
         getLogger().info("Built-in gems registered: " + me.monkeee.weaponGems.API.GemRegistry.getAllIDs());
-
-        // 2. Addon plugins register their gems here via GemRegistry.register(...)
-        //    (they depend on this plugin and call register in their own onEnable,
-        //     which runs after this plugin is fully enabled)
-
-        // 3. Rebuild the legacy MapOfItems compat shim so ApplyCommand still works
-        GemItemHandler.ApplyItemsToList();
 
         // 4. Start systems
         TickingAbility.startTicking();

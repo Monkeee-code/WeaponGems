@@ -2,9 +2,7 @@ package me.monkeee.weaponGems.Commands;
 
 import de.tr7zw.changeme.nbtapi.NBT;
 import me.monkeee.weaponGems.API.GemRegistry;
-import me.monkeee.weaponGems.GemID;
 import me.monkeee.weaponGems.Handlers.ItemHandler;
-import me.monkeee.weaponGems.Handlers.JsonHandler;
 import me.monkeee.weaponGems.Handlers.ListHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

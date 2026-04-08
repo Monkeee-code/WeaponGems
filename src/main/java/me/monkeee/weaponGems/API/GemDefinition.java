@@ -1,6 +1,5 @@
 package me.monkeee.weaponGems.API;
 
-import de.tr7zw.changeme.nbtapi.NbtApiException;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 

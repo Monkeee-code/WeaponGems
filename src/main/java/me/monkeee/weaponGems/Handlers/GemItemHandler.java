@@ -19,7 +19,9 @@ public class GemItemHandler {
     /**
      * Rebuilds MapOfItems from the current state of GemRegistry.
      * Called once after all gems are registered (built-in + addons).
+     * @deprecated - Deprecated in favor of using GemRegistry.
      */
+    @Deprecated
     public static void ApplyItemsToList() {
         MapOfItems.clear();
         for (GemDefinition gem : GemRegistry.getAll()) {
