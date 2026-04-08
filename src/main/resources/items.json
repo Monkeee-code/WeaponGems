@@ -13,6 +13,7 @@
       "&7ɢʀᴀɴᴛѕ &aʀᴇѕɪѕᴛᴀɴᴄᴇ ɪ",
       "&7ᴡʜɪʟᴇ ᴡᴇᴀʀɪɴɢ ᴀɴ &aɪᴍʙᴜᴇᴅ&7 ᴀʀᴍᴏʀ ᴘɪᴇᴄᴇ."
     ],
+    "applicable_items": ["chestplate"],
     "spawnrate": {
       "amount": 1,
       "chance": 0.30
@@ -35,6 +36,7 @@
       "&7ʜᴇᴀʟѕ ᴛʜᴇ ᴡɪᴇʟᴅᴇʀ ꜰᴏʀ &c20%",
       "&7ᴏꜰ ᴛʜᴇ &4ꜰɪɴᴀʟ&7 ᴅᴀᴍᴀɢᴇ ᴅᴇᴀʟᴛ."
     ],
+    "applicable_items": ["sword", "axe"],
     "spawnrate": {
       "amount": 1,
       "chance": 0.10
@@ -60,6 +62,7 @@
       "&7ɢʀᴀɴᴛѕ &8ʙʟɪɴᴅɴᴇѕѕ&7 ꜰᴏʀ 3 ѕᴇᴄᴏɴᴅѕ",
       "&7ᴛᴏ ᴇɴᴇᴍɪᴇѕ ѕᴛʀᴜᴄᴋ ᴡɪᴛʜ ᴀɴ ɪᴍʙᴜᴇᴅ ᴡᴇᴀᴘᴏɴ."
     ],
+    "applicable_items": ["sword", "axe", "mace"],
     "spawnrate": {
       "amount": 1,
       "chance": 0.35
@@ -82,6 +85,7 @@
       "&7ɢʀᴀɴᴛѕ &6ʜᴀѕᴛᴇ ɪ&7 ᴡʜɪʟᴇ",
       "&7ᴛʜᴇ ɪᴍʙᴜᴇᴅ ɪᴛᴇᴍ ɪѕ ʜᴇʟᴅ."
     ],
+    "applicable_items": ["pickaxe", "shovel", "axe", "hoe", "shears"],
     "spawnrate": {
       "amount": 1,
       "chance": 0.25
@@ -105,6 +109,7 @@
       "&7ɢʀᴀɴᴛѕ &dɪᴍᴍᴜɴɪᴛʏ&7 ᴛᴏ ᴀʀʀᴏᴡѕ",
       "&7ᴡʜɪʟᴇ ᴛʜᴇ ɪᴍʙᴜᴇᴅ ɪᴛᴇᴍ ɪѕ ᴡᴏʀɴ."
     ],
+    "applicable_items": ["helmet"],
     "spawnrate": {
       "amount": 1,
       "chance": 0.15
@@ -128,6 +133,7 @@
       "&7ɪɴꜰʟɪᴄᴛѕ &2ᴘᴏɪѕᴏɴ&7 ꜰᴏʀ 3 ѕᴇᴄᴏɴᴅѕ",
       "&7ᴏɴ ᴇɴᴇᴍɪᴇѕ ʜɪᴛ ᴡɪᴛʜ ᴀɴ ɪᴍʙᴜᴇᴅ ᴡᴇᴀᴘᴏɴ."
     ],
+    "applicable_items": ["sword", "axe", "mace"],
     "spawnrate": {
       "amount": 1,
       "chance": 0.40
@@ -152,6 +158,7 @@
       "&7ᴡʜᴇɴ ʙᴇʟᴏᴡ &e25%&7 ʜᴇᴀʟᴛʜ.",
       "&bᴄᴏᴏʟᴅᴏᴡɴ: 20ѕ"
     ],
+    "applicable_items": ["chestplate"],
     "spawnrate": {
       "amount": 1,
       "chance": 0.20
@@ -177,6 +184,7 @@
       "&7ᴀɴᴅ ɪɴᴠɪѕɪʙɪʟɪᴛʏ ꜰᴏʀ ꜰᴏʀ 10 ѕᴇᴄᴏɴᴅѕ.",
       "&bᴄᴏᴏʟᴅᴏᴡɴ: 40ѕ"
     ],
+    "applicable_items": ["boots"],
     "spawnrate": {
       "amount": 1,
       "chance": 0.15
@@ -201,6 +209,7 @@
       "&7ᴡʜᴇɴ ꜰᴏᴜʀ ʙʟᴏᴄᴋѕ ᴀʙᴏᴠᴇ ᴛʜᴇ ɢʀᴏᴜɴᴅ,",
       "&7ɢʀᴀɴᴛѕ &fѕʟᴏᴡ ꜰᴀʟʟɪɴɢ."
     ],
+    "applicable_items": ["boots"],
     "spawnrate": {
       "amount": 1,
       "chance": 0.5
@@ -230,6 +239,7 @@
       "&7ᴡʜᴇɴ ᴜɴᴅᴇʀ &c10%&7 ʜᴇᴀʟᴛʜ.",
       "&bᴄᴏᴏʟᴅᴏᴡɴ: 300ѕ"
     ],
+    "applicable_items": ["chestplate"],
     "spawnrate": {
       "amount": 1,
       "chance": 0.001

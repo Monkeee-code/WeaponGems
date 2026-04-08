@@ -1,5 +1,5 @@
 name: WeaponGems
-version: '1.0'
+version: ${version}
 main: me.monkeee.weaponGems.WeaponGems
 api-version: '1.21'
 prefix: WG

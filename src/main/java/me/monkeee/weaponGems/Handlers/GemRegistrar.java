@@ -3,7 +3,6 @@ package me.monkeee.weaponGems.Handlers;
 import de.tr7zw.changeme.nbtapi.NBT;
 import me.monkeee.weaponGems.API.GemDefinition;
 import me.monkeee.weaponGems.API.GemRegistry;
-import me.monkeee.weaponGems.GemID;
 import me.monkeee.weaponGems.Abilities.*;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -18,8 +17,6 @@ import java.util.List;
 /**
  * Reads items.json and registers all built-in gems into {@link GemRegistry},
  * wiring up each gem's existing ability class.
- *
- * This replaces the old GemItemHandler map and the scattered hardcoded lists.
  */
 public class GemRegistrar {
 
@@ -40,13 +37,21 @@ public class GemRegistrar {
             Material material  = Material.valueOf(gemObj.getString("item").toUpperCase());
             double spawnChance = gemObj.getJSONObject("spawnrate").getDouble("chance");
 
+            // Lore
             List<String> lore = new ArrayList<>();
             JSONArray loreArray = gemObj.getJSONArray("lore");
             for (int i = 0; i < loreArray.length(); i++) {
                 lore.add(loreArray.getString(i));
             }
 
-            List<String> applicableItems = GemItemHandler.MapOfItems.getOrDefault(gemId, List.of());
+            // Applicable items — read directly from JSON, no GemItemHandler needed
+            List<String> applicableItems = new ArrayList<>();
+            if (gemObj.has("applicable_items")) {
+                JSONArray itemsArray = gemObj.getJSONArray("applicable_items");
+                for (int i = 0; i < itemsArray.length(); i++) {
+                    applicableItems.add(itemsArray.getString(i));
+                }
+            }
 
             GemDefinition.Builder builder = GemDefinition.builder(gemId)
                     .name(displayName)
@@ -56,7 +61,7 @@ public class GemRegistrar {
 
             for (String line : lore) builder.lore(line);
 
-            // Read loot table keys from JSON, e.g. "loot_tables": ["chests/simple_dungeon"]
+            // Loot tables
             if (gemObj.has("loot_tables")) {
                 JSONArray tables = gemObj.getJSONArray("loot_tables");
                 for (int i = 0; i < tables.length(); i++) {
@@ -70,51 +75,20 @@ public class GemRegistrar {
         }
     }
 
-    /**
-     * Wires the existing ability classes to the three ability slots.
-     * When you add a new built-in gem, add a case here.
-     */
     private static void wireAbilities(GemDefinition.Builder builder, String gemId) {
         switch (gemId) {
-
-            case "jade" -> builder.tickingAbility(JadeAbility::AbilityReinforcement);
-
-            case "divan_core" -> builder.tickingAbility(DivanCoreAbility::AbilityMinersFever);
-
-            case "lightstone" -> builder.tickingAbility(LightStoneAbility::AbilityLongevity);
-
+            case "jade"          -> builder.tickingAbility(JadeAbility::AbilityReinforcement);
+            case "divan_core"    -> builder.tickingAbility(DivanCoreAbility::AbilityMinersFever);
+            case "lightstone"    -> builder.tickingAbility(LightStoneAbility::AbilityLongevity);
             case "angel_feather" -> builder.tickingAbility(AngelFeatherAbility::AbilitySavingGrace);
-
             case "limitless_gem" -> builder.tickingAbility(LimitlessGemAbility::AbilityLimitBreaker);
-
-            case "shadow_stone" -> builder.damageAbility((victim, event) ->
-                    ShadowStoneAbility.AbilityLastEcho(victim));
-
-            case "darkstone" -> builder.dealerAbility((dealer, victim, event) ->
-                    DarkstoneAbility.AbilitySightDrain(dealer, victim));
-
-            case "ruby" -> builder.dealerAbility((dealer, victim, event) ->
-                    RubyAbility.AbilityLifeSteal(dealer, event));
-
-            case "spider_fang" -> builder.dealerAbility((dealer, victim, event) ->
-                    SpiderFangAbility.AbilityArachnidsFang(dealer, victim));
-
-            // deflection_eye is arrow-specific and handled directly in EntityDamageEntityEvent
-            case "deflection_eye" -> { /* no ability slot needed */ }
-
+            case "shadow_stone"  -> builder.damageAbility((victim, event) -> ShadowStoneAbility.AbilityLastEcho(victim));
+            case "darkstone"     -> builder.dealerAbility((dealer, victim, event) -> DarkstoneAbility.AbilitySightDrain(dealer, victim));
+            case "ruby"          -> builder.dealerAbility((dealer, victim, event) -> RubyAbility.AbilityLifeSteal(dealer, event));
+            case "spider_fang"   -> builder.dealerAbility((dealer, victim, event) -> SpiderFangAbility.AbilityArachnidsFang(dealer, victim));
+            case "deflection_eye" -> { /* arrow-specific, handled in EntityDamageEntityEvent */ }
             default -> { /* addon gems wired by their own plugin */ }
         }
-    }
-
-    // -----------------------------------------------------------------------
-    // Helpers used by GemItemHandler (backward compat) and ApplyCommand
-    // -----------------------------------------------------------------------
-
-    /** Returns the applicable item suffixes for a gem, pulled from GemRegistry. */
-    public static List<String> getApplicableItems(String gemId) {
-        return GemRegistry.get(gemId)
-                .map(GemDefinition::getApplicableItems)
-                .orElse(List.of());
     }
 
     /** Checks whether the given ItemStack has the specified gem applied. */
