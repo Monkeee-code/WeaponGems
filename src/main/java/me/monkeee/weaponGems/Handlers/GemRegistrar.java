@@ -4,8 +4,10 @@ import de.tr7zw.changeme.nbtapi.NBT;
 import me.monkeee.weaponGems.API.GemDefinition;
 import me.monkeee.weaponGems.API.GemRegistry;
 import me.monkeee.weaponGems.Abilities.*;
+import me.monkeee.weaponGems.WeaponGems;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -22,6 +24,7 @@ public class GemRegistrar {
 
     public static void registerAll(File dataFolder) {
         File itemsJson = new File(dataFolder, "items.json");
+        FileConfiguration config = WeaponGems.getInstance().getConfig();
 
         JSONObject json;
         try {
@@ -31,6 +34,7 @@ public class GemRegistrar {
         }
 
         for (String gemId : json.keySet()) {
+            if (config.isSet(gemId)) { if (!config.getBoolean(gemId)) return; }
             JSONObject gemObj = json.getJSONObject(gemId);
 
             String displayName = gemObj.getString("name");

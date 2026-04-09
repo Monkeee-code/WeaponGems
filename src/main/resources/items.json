@@ -242,7 +242,7 @@
     "applicable_items": ["chestplate"],
     "spawnrate": {
       "amount": 1,
-      "chance": 0.001
+      "chance": 0.01
     },
     "loot_tables": [
       "chests/woodland_mansion"

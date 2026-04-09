@@ -15,3 +15,9 @@ commands:
     description: Get's the player's gem cooldowns
   wgremove:
     description: Remove a specific gem from an item
+  geminfo:
+    description: Gets all of the registered gems in the server
+permissions:
+  wg.getall:
+    description: Grants the ability to use /geminfo
+    default: op

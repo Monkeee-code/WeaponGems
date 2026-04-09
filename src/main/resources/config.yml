@@ -1,2 +1,14 @@
 # If you want to replace items.json on plugin startup
 replace-json: true
+
+# Toggles for the builtin Gems
+jade: true
+ruby: true
+darkstone: true
+divan_core: true
+deflection_eye: true
+spider_fang: true
+lightstone: true
+shadow_stone: true
+angel_feather: true
+limitless_gem: true

@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.nio.file.Files;
 
+@Deprecated
 public class JsonHandler {
 
 

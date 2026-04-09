@@ -1,5 +1,6 @@
 package me.monkeee.weaponGems.Abilities;
 
+import me.monkeee.weaponGems.API.GemRegistry;
 import me.monkeee.weaponGems.WeaponGems;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -10,7 +11,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import static me.monkeee.weaponGems.Handlers.CooldownHandler.cooldowns;
-import static me.monkeee.weaponGems.Handlers.JsonHandler.String_reader;
 
 public class CooldownNotification {
 
@@ -25,12 +25,7 @@ public class CooldownNotification {
                 // Iterate over a copy to allow safe removal
                 new HashMap<>(abilities).forEach((gemId, endTime) -> {
                     if (System.currentTimeMillis() > endTime) {
-                        String displayName;
-                        try {
-                            displayName = String_reader(gemId, "name");
-                        } catch (Exception e) {
-                            displayName = gemId; // fallback for addon gems with no JSON entry
-                        }
+                        String displayName = GemRegistry.get(gemId).get().getDisplayName();
                         player.sendMessage(ChatColor.GREEN + "Your gem "
                                 + ChatColor.translateAlternateColorCodes('&', displayName)
                                 + ChatColor.GREEN + " is off cooldown!");

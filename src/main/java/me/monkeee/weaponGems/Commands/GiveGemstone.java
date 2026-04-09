@@ -32,8 +32,8 @@ public class GiveGemstone implements CommandExecutor, TabCompleter {
                 player.sendMessage(ChatColor.GREEN+"[!] You have been given a gem: "+ChatColor.translateAlternateColorCodes('&', gem.getDisplayName()));
             }
         } else {
-            player.getInventory().addItem(ItemHandler.createGem(GemID.valueOf(args[0])));
-            player.sendMessage(ChatColor.GREEN + "[!] You have been given a gem: " + ChatColor.translateAlternateColorCodes('&', JsonHandler.String_reader(args[0], "name")));
+            player.getInventory().addItem(ItemHandler.createGem(args[0]));
+            player.sendMessage(ChatColor.GREEN + "[!] You have been given a gem: " + ChatColor.translateAlternateColorCodes('&', GemRegistry.get(args[0]).get().getDisplayName()));
         }
         return true;
     }

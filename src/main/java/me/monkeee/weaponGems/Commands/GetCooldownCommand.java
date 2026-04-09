@@ -1,8 +1,8 @@
 package me.monkeee.weaponGems.Commands;
 
-import me.monkeee.weaponGems.GemID;
+import me.monkeee.weaponGems.API.GemDefinition;
+import me.monkeee.weaponGems.API.GemRegistry;
 import me.monkeee.weaponGems.Handlers.CooldownHandler;
-import me.monkeee.weaponGems.Handlers.ListHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,8 +15,8 @@ public class GetCooldownCommand implements CommandExecutor {
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, @NonNull String[] args) {
         if (!(sender instanceof Player player)) return false;
         player.sendMessage(ChatColor.YELLOW+"[?] Here are your cooldowns:");
-        for (String gem : ListHandler.getGemList()) {
-            String line = CooldownHandler.getCooldown(player, GemID.valueOf(gem));
+        for (GemDefinition gem : GemRegistry.getAll()) {
+            String line = CooldownHandler.getCooldown(player, gem.getID());
             if (line.isBlank()) continue;
             player.sendMessage(line);
         }

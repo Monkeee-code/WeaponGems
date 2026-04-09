@@ -1,5 +1,6 @@
 package me.monkeee.weaponGems.Handlers;
 
+import me.monkeee.weaponGems.API.GemRegistry;
 import me.monkeee.weaponGems.GemID;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -39,7 +40,7 @@ public class CooldownHandler {
         long remaining = endTime - System.currentTimeMillis();
         if (remaining <= 0) return "";
 
-        String displayName = JsonHandler.String_reader(gemId, "name");
+        String displayName = GemRegistry.get(gemId).get().getDisplayName();
         return ChatColor.translateAlternateColorCodes('&', displayName)
                 + ChatColor.RESET + " -> " + Math.max(remaining / 1000, 0) + "s";
     }

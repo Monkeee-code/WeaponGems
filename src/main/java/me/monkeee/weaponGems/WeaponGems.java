@@ -44,6 +44,7 @@ public final class WeaponGems extends JavaPlugin {
         Objects.requireNonNull(getCommand("wgcds")).setExecutor(new GetCooldownCommand());
         Objects.requireNonNull(getCommand("wgremove")).setExecutor(new RemoveGemCommand());
         Objects.requireNonNull(getCommand("wgremove")).setTabCompleter(new RemoveGemCommand());
+        Objects.requireNonNull(getCommand("geminfo")).setExecutor(new GetRegisteredGems());
 
         // 6. Events
         getServer().getPluginManager().registerEvents(new EntityDamageEntityEvent(), this);

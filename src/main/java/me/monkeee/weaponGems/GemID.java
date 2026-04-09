@@ -1,5 +1,6 @@
 package me.monkeee.weaponGems;
 
+@Deprecated
 public enum GemID {
 
     darkstone,
