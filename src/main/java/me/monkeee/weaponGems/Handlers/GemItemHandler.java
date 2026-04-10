@@ -10,6 +10,7 @@ import java.util.*;
  * {@link #MapOfItems} is populated lazily from GemRegistry so existing code
  * (e.g. ApplyCommand's isCorrectItem check) continues to work unchanged.
  */
+@Deprecated
 public class GemItemHandler {
 
     /** @deprecated Access GemRegistry directly — this view is rebuilt on each call. */

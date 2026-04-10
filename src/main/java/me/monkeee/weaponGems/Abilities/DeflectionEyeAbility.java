@@ -18,7 +18,7 @@ public class DeflectionEyeAbility {
 
         if (helmetSlot != null && helmetSlot.getType() != Material.AIR) {
             helmetHasDeflectionEye = NBT.get(helmetSlot, nbt -> {
-                return nbt.getBoolean(GemID.deflection_eye.toString());
+                return nbt.getBoolean("deflection_eye");
             });
         }
 

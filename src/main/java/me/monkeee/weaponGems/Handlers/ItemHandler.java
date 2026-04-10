@@ -10,14 +10,6 @@ import java.util.List;
 public class ItemHandler {
 
     /**
-     * Creates a gem ItemStack for a built-in gem (by legacy GemID enum).
-     * For addon gems use {@link #createGem(String)} directly.
-     */
-    public static ItemStack createGem(GemID gemType) {
-        return createGem(gemType.toString());
-    }
-
-    /**
      * Creates a gem ItemStack by gem ID string.
      * Works for both built-in gems (loaded from JSON) and addon-registered gems.
      */

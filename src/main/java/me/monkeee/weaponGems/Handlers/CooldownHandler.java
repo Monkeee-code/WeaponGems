@@ -45,20 +45,6 @@ public class CooldownHandler {
                 + ChatColor.RESET + " -> " + Math.max(remaining / 1000, 0) + "s";
     }
 
-    // ---- Legacy GemID enum overloads (kept for backward compat) ----
-
-    public static boolean isOnCooldown(Player player, GemID ability) {
-        return isOnCooldown(player, ability.toString());
-    }
-
-    public static void setCooldown(Player player, GemID ability, long durationMillis) {
-        setCooldown(player, ability.toString(), durationMillis);
-    }
-
-    public static String getCooldown(Player player, GemID gem) {
-        return getCooldown(player, gem.toString());
-    }
-
     // ---- Cleanup ----
 
     public static void removePlayer(UUID uuid) {

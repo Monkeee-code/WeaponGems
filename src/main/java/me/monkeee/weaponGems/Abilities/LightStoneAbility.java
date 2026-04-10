@@ -22,7 +22,7 @@ public class LightStoneAbility {
 
         if (chestplateSlot != null && chestplateSlot.getType() != Material.AIR) {
             chestplateHasJadeGem = NBT.get(chestplateSlot, nbt -> {
-                return nbt.getBoolean(GemID.lightstone.toString());
+                return nbt.getBoolean("lightstone");
             });
         }
 
@@ -33,9 +33,9 @@ public class LightStoneAbility {
 
         if ((maxHealth*0.25) < health) return;
 
-        if (CooldownHandler.isOnCooldown(player, GemID.lightstone)) return;
+        if (CooldownHandler.isOnCooldown(player, "lightstone")) return;
 
-        CooldownHandler.setCooldown(player, GemID.lightstone, 20*1000);
+        CooldownHandler.setCooldown(player, "lightstone", 20*1000);
 
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 120, 1, true, false));
         player.sendMessage(ChatColor.GREEN+"[!] Your ability "+ChatColor.YELLOW+"Longevity"+ChatColor.GREEN+" has been "+ChatColor.WHITE+"activated!");

@@ -19,15 +19,15 @@ public class ShadowStoneAbility {
 
         if (bootsSlot != null && bootsSlot.getType() != Material.AIR) {
             bootsHaveShadowStone = NBT.get(bootsSlot, nbt -> {
-                return nbt.getBoolean(GemID.shadow_stone.toString());
+                return nbt.getBoolean("shadow_stone");
             });
         }
 
         if (!bootsHaveShadowStone) return;
 
-        if (CooldownHandler.isOnCooldown(player, GemID.shadow_stone)) return;
+        if (CooldownHandler.isOnCooldown(player, "shadow_stone")) return;
 
-        CooldownHandler.setCooldown(player, GemID.shadow_stone, 40*1000);
+        CooldownHandler.setCooldown(player, "shadow_stone", 40*1000);
 
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100, 1, true, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 200, 0, true, false));

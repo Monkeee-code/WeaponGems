@@ -15,7 +15,7 @@ public class DivanCoreAbility {
 
         if (tool.getType().equals(Material.AIR)) return;
 
-        boolean hasDivanGem = NBT.get(tool, nbt -> { return nbt.getBoolean(GemID.divan_core.toString()); });
+        boolean hasDivanGem = NBT.get(tool, nbt -> { return nbt.getBoolean("divan_core"); });
         if (!hasDivanGem) return;
 
         player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 20, 1, true, false, false));

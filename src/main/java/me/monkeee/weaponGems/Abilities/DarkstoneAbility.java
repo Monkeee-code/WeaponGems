@@ -17,7 +17,7 @@ public class DarkstoneAbility {
         if (weapon.getType().equals(Material.AIR)) return;
 
         boolean hasDarkstoneGem = NBT.get(weapon, nbt -> {
-            return nbt.getBoolean(GemID.darkstone.toString());
+            return nbt.getBoolean("darkstone");
         });
 
         if (!hasDarkstoneGem) return;

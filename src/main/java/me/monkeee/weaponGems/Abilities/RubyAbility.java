@@ -1,7 +1,6 @@
 package me.monkeee.weaponGems.Abilities;
 
 import de.tr7zw.changeme.nbtapi.NBT;
-import me.monkeee.weaponGems.GemID;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
@@ -15,7 +14,7 @@ public class RubyAbility {
     public static void AbilityLifeSteal(Player dealer, EntityDamageByEntityEvent event) {
         if (dealer.getInventory().getItemInMainHand().getType().equals(Material.AIR)) return;
         ItemStack dealerWeapon = dealer.getInventory().getItemInMainHand();
-        boolean hasRubyGem = NBT.get(dealerWeapon, nbt -> { return nbt.getBoolean(GemID.ruby.toString()); });
+        boolean hasRubyGem = NBT.get(dealerWeapon, nbt -> { return nbt.getBoolean("ruby"); });
         if (!hasRubyGem) return;
         double dealerHP = dealer.getHealth();
         double damage = event.getFinalDamage();

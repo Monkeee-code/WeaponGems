@@ -15,7 +15,7 @@ public class SpiderFangAbility {
         ItemStack weapon = dealer.getInventory().getItemInMainHand();
 
         if (weapon.getType().equals(Material.AIR)) return;
-        boolean hasSpiderSoulGem = NBT.get(weapon, nbt -> { return nbt.getBoolean(GemID.spider_fang.toString()); });
+        boolean hasSpiderSoulGem = NBT.get(weapon, nbt -> { return nbt.getBoolean("spider_fang"); });
         if (!hasSpiderSoulGem) return;
 
         player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 60, 1, false, false, true));

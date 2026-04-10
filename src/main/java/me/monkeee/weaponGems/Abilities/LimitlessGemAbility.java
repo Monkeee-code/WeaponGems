@@ -1,7 +1,6 @@
 package me.monkeee.weaponGems.Abilities;
 
 import de.tr7zw.changeme.nbtapi.NBT;
-import me.monkeee.weaponGems.GemID;
 import me.monkeee.weaponGems.Handlers.CooldownHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -22,7 +21,7 @@ public class LimitlessGemAbility {
 
         if (chestplateSlot != null && chestplateSlot.getType() != Material.AIR) {
             chestplateHasLimitlessGem = NBT.get(chestplateSlot, nbt -> {
-                return nbt.getBoolean(GemID.limitless_gem.toString());
+                return nbt.getBoolean("limitless_gem");
             });
         }
 
@@ -33,9 +32,9 @@ public class LimitlessGemAbility {
 
         if ((maxHealth*0.1) < currentHealth) return;
 
-        if (CooldownHandler.isOnCooldown(player, GemID.limitless_gem)) return;
+        if (CooldownHandler.isOnCooldown(player, "limitless_gem")) return;
 
-        CooldownHandler.setCooldown(player, GemID.limitless_gem, 300*1000);
+        CooldownHandler.setCooldown(player, "limitless_gem", 300*1000);
 
         player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 200, 2, true, false));
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 2, true, false));
